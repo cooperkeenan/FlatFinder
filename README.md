@@ -11,7 +11,7 @@ personalized recommendations, and setting higher standards for property listings
 - Automated viewing and scheduling management.
 - Personalized flat recommendations using a recommendation algorithm.
 - Integrated communication with property listers.
-- High-quality property listings with mandatory details.
+- High-quality property listings with mandatory details
 
 ## Project Setup
 
