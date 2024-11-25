@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You - Flat Finder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <nav>
+            <div class="logo"><a href="/">Flat Finder</a></div>
+            <ul class="nav-links">
+                <li><a href="/for-you" class="active">For You</a></li>
+                <li><a href="/search">Search</a></li>
+                <li><a href="/viewings">Viewings</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/lister">Lister Portal</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- "For You" Section -->
+    <main class="for-you-page">
+        <section class="property-card">
+            <div class="property-info">
+                <h2>£2,600 pcm (£600 pw)</h2>
+                <h3>2 Bedroom Apartment</h3>
+                <p>Moray Place, Edinburgh EH3</p>
+                <div class="property-details">
+                    <span>Unfurnished</span>
+                    <span>Available Now</span>
+                    <span>Long Term</span>
+                    <span>No Pets</span>
+                    <span>Deposit £1000</span>
+                    <span>EPC Rating D</span>
+                </div>
+                <div class="image-gallery">
+                    <div class="main-image">Image Placeholder</div>
+                    <div class="extra-images">+10 More</div>
+                </div>
+            </div>
+            <div class="property-map">
+                <div class="map-placeholder">Map Placeholder</div>
+                <p>A freshly decorated two-bedroom ground floor flat...</p>
+            </div>
+        </section>
+
+        <div class="action-buttons">
+            <button class="dislike-btn">✖</button>
+            <button class="like-btn">❤</button>
+        </div>
+    </main>
+</body>
+</html>

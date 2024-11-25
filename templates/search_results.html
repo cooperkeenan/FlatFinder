@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - Flat Finder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <nav>
+            <div class="logo"><a href="/">Flat Finder</a></div>
+            <ul class="nav-links">
+                <li><a href="/for-you">For You</a></li>
+                <li><a href="/search">Search</a></li>
+                <li><a href="/viewings">Viewings</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/lister">Lister Portal</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Search Modification Section -->
+    <section class="search-modify">
+        <input type="text" placeholder="Search" class="search-bar" value="{{ location }}">
+        <input type="number" id="min-price" name="min_price" placeholder="Search">
+        <button class="filter-btn">Search</button>
+        <button class="filter-btn">Price</button>
+        <button class="filter-btn">Radius</button>
+        <button class="filter-btn">Beds</button>
+        <button class="filter-btn">More Filters</button>
+    </section>
+
+    <!-- Main Search Results Content -->
+    <main class="search-results-page">
+        <!-- Results List -->
+        <section class="results-list">
+            <div class="result-item">
+                <div class="image-placeholder">Image</div>
+                <div class="result-details">
+                    <h3>£2000</h3>
+                    <p>Beds | Showers</p>
+                    <p>Palmerston Place, Edinburgh, EH12</p>
+                    <p>Immaculately presented two-bedroom apartment...</p>
+                    <p><button class="listing-btn">Listing Company</button></p>
+                </div>
+            </div>
+            <!-- Add more result-item divs as needed for mockup -->
+        </section>
+
+        <!-- Map Section -->
+        <aside class="map-section">
+            <div class="map-placeholder">Map</div>
+            <button class="edit-area-btn">Edit This Area</button>
+        </aside>
+    </main>
+</body>
+</html>
