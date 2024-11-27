@@ -405,3 +405,195 @@ nav {
 .search-modify button + button {
     margin-left: 1rem;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+header {
+    background-color: #e0a972;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.nav-links a.active {
+    text-decoration: underline;
+}
+
+.for-you-page {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+}
+
+.property-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background: #f4f4f4;
+    padding: 1rem;
+    border-radius: 10px;
+    width: 70%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+
+.left-column {
+    width: 60%;
+}
+
+.right-column {
+    width: 35%;
+    padding-left: 20px;
+}
+
+.image-gallery {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.large-image {
+    background-color: #ccc;
+    width: 50%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.small-images {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 48%; /* Adjusted to fill remaining space with a gap */
+}
+
+.small-image {
+    background-color: #ddd;
+    height: 145px; /* Adjusted for better fit */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    flex-grow: 1; /* Makes each small image take equal height */
+}
+
+
+.description-tile {
+    background-color: #eaeaea;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.action-buttons button {
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dislike-btn {
+    background-color: #f44336;
+    color: #fff;
+}
+
+.like-btn {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.action-buttons button:hover {
+    opacity: 0.8;
+}
+
+
+.property-details {
+    width: 100%;  /* Adjust this to match the content width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;  /* Ensure padding doesn't affect width */
+}
+
+.details-row {
+    display: flex;
+    justify-content: space-around; /* This will evenly space items */
+    width: 100%; /* Full width to spread items */
+    margin-top: 10px;
+}
+
+.detail-item {
+    font-size: 0.9rem;
+    color: #333;
+    padding: 5px; /* Minimal padding for clean look */
+}
