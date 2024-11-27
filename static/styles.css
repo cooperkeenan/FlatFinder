@@ -594,9 +594,16 @@ nav {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.viewing-image img {
-    width: 10px;
-    height: 150px; /* Adjust based on actual image aspect ratio */
+.thumbnail{
+    width: 20%;
+    height: 200px;
+    background-color: #eeee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+    border-radius: 8px;
+    font-size: 0.9rem;
 }
 
 .viewing-details {
