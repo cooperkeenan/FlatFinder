@@ -1,6 +1,12 @@
 from flask import Flask, render_template, request
+from models import db
+from models import Property
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flatfinder.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
+
 
 # Home page route (linked to the logo)
 @app.route('/')
@@ -44,5 +50,27 @@ def lister():
 def contact():
     return "<h1>Contact Page</h1>"
 
-if __name__ == "__main__":
+@app.route('/test-db')
+def test_db():
+    properties = Property.query.all()  # Fetch all properties from the database
+    print("Number of properties found:", len(properties))  # Debugging line to check how many properties are fetched
+    for prop in properties:  # Print some details to ensure data is loaded correctly
+        print(prop.address, prop.price_pcm)
+    return render_template('test_db.html', properties=properties)
+
+
+@app.cli.command("init_db")
+def init_db():
+    """Create the database and tables."""
+    db.create_all()
+    print("Database initialized.")
+
+@app.cli.command("drop_db")
+def drop_db():
+    """Drop all tables in the database."""
+    db.drop_all()
+    print("Database cleared.")
+
+
+if __name__ == "__app__":
     app.run(debug=True)
