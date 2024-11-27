@@ -1,0 +1,24 @@
+<!-- templates/test_db.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Listings</title>
+</head>
+<body>
+    <h1>Property Listings</h1>
+    <ul>
+        {% for property in properties %}
+            <li>
+                <h2>{{ property.address }}</h2>
+                <p>Price PCM: {{ property.price_pcm }}</p>
+                <p>Bedrooms: {{ property.bedrooms }}</p>
+                <p>Bathrooms: {{ property.bathrooms }}</p>
+                <p>Description: {{ property.description }}</p>
+                <img src="{{ property.main_image_url }}" alt="Main Property Image" style="width:200px; height:auto;">
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
