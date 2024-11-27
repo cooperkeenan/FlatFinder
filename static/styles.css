@@ -346,26 +346,6 @@ nav {
     color: #fff;
 }
 
-/* Map Section Styling */
-.map-section {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-}
-
-.map-placeholder {
-    width: 100%;
-    height: 300px;
-    background-color: #eaeaea;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #666;
-    border-radius: 8px;
-    font-size: 0.9rem;
-}
 
 .edit-area-btn {
     padding: 0.5rem 1rem;
@@ -424,55 +404,6 @@ nav {
 
 
 
-
-
-
-
-/* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f9f9f9;
-    color: #333;
-}
-
-header {
-    background-color: #e0a972;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo a {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #333;
-    text-decoration: none;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-}
-
-.nav-links a.active {
-    text-decoration: underline;
-}
-
 .for-you-page {
     padding: 2rem;
     display: flex;
@@ -508,6 +439,7 @@ header {
     width: 100%;
     gap: 10px;
     align-items: flex-start;
+    margin-top: 35px;
     margin-bottom: 10px;
 }
 
@@ -539,7 +471,31 @@ header {
 }
 
 
+/* Map Section Styling */
+.map-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.map-placeholder {
+    width: 100%;
+    height: 250px;
+    background-color: #eaeaea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+
 .description-tile {
+    margin-top: 10px;
+    height: 250px;
     background-color: #eaeaea;
     padding: 10px;
     border-radius: 5px;
@@ -577,23 +533,107 @@ header {
 
 
 .property-details {
-    width: 100%;  /* Adjust this to match the content width */
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    box-sizing: border-box;  /* Ensure padding doesn't affect width */
+    justify-content: space-between; /* Ensures space is distributed between columns */
+    width: 50%;
+    padding: 0; /* Remove padding inside the container */
 }
 
-.details-row {
-    display: flex;
-    justify-content: space-around; /* This will evenly space items */
-    width: 100%; /* Full width to spread items */
-    margin-top: 10px;
+.details-column {
+    flex: 1; /* Each column takes equal width */
+    padding: 10px 5px; /* Vertical padding of 10px, horizontal padding of 5px */
 }
 
 .detail-item {
-    font-size: 0.9rem;
-    color: #333;
-    padding: 5px; /* Minimal padding for clean look */
+    display: block;
+    margin-bottom: 10px; /* Space between items */
+}
+
+
+.details-row.lower {
+    display: flex;
+    justify-content: space-around; /* Distribute space evenly */
+    align-items: center; /* Center items vertically */
+    margin-top: 20px; /* Space above the row */
+}
+
+.detail-item {
+    display: flex;
+    align-items: center; /* Align the icon and text */
+    font-size: 0.9rem; /* Adjust text size */
+}
+
+.detail-item i {
+    margin-right: 5px; /* Space between icon and text */
+    color: #666; /* Icon color, choose as per your design */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* VIEWINGS */
+
+
+.viewing-card {
+    display: flex;
+    width: 60%;
+    background-color: white;
+    margin: 20px;
+    margin-left: 200px;
+    margin-top: 50px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.viewing-image img {
+    width: 10px;
+    height: 150px; /* Adjust based on actual image aspect ratio */
+}
+
+.viewing-details {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.viewing-info {
+    list-style: none;
+    padding: 0;
+}
+
+.viewing-info li {
+    margin-bottom: 5px;
+}
+
+.viewing-description {
+    margin-top: 10px;
+}
+
+.viewing-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.status {
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+}
+
+.confirmed {
+    background-color: lightgreen;
+}
+
+.date {
+    font-size: 0.8rem;
 }

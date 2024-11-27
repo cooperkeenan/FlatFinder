@@ -30,7 +30,7 @@ def search_results():
 
 @app.route('/viewings')
 def viewings():
-    return "<h1>Viewings Page</h1>"
+    return render_template('viewing_manager.html')
 
 @app.route('/profile')
 def profile():
