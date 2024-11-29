@@ -23,16 +23,16 @@ def for_you():
 def search():
     return render_template('search.html')
 
+
+
+@app.route('/search/results')
 @app.route('/search/results')
 def search_results():
-    # Extract query parameters if needed
-    location = request.args.get('location')
-    min_price = request.args.get('min_price')
-    max_price = request.args.get('max_price')
-    bedrooms = request.args.get('bedrooms')
+    # Get properties without filters
+    properties = Property.query.all()
+    return render_template('search_results.html', properties=properties)
 
-    # Pass any search data to the template
-    return render_template('search_results.html', location=location, min_price=min_price, max_price=max_price, bedrooms=bedrooms)
+
 
 @app.route('/viewings')
 def viewings():
