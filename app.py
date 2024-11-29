@@ -72,5 +72,13 @@ def drop_db():
     print("Database cleared.")
 
 
+@app.template_filter('formatdate')
+def format_date(value, format='%Y-%m-%d'):
+    """Custom Jinja2 filter to format datetime objects."""
+    if value is None:
+        return ""
+    return value.strftime(format)
+
+
 if __name__ == "__app__":
     app.run(debug=True)

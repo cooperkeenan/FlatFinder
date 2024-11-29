@@ -17,6 +17,9 @@ class Property(db.Model):
     image_urls = db.Column(db.Text)  # JSON encoded list of URLs
     location = db.Column(db.String(255))
     listing_company = db.Column(db.String(255))
+    date_added = db.Column(db.String(255))
+    lister_logo = db.Column(db.String(500))
+
 
 class Lister(db.Model):
     id = db.Column(db.Integer, primary_key=True)
