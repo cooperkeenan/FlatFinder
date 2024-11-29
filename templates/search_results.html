@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results - Flat Finder</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='search.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -24,8 +26,7 @@
 
     <!-- Search Modification Section -->
     <section class="search-modify">
-        <input type="text" placeholder="Search" class="search-bar" value="{{ location }}">
-        <input type="number" id="min-price" name="min_price" placeholder="Search">
+        <input type="text" placeholder="Search" class="search" value="{{ location }}">
         <button class="filter-btn">Search</button>
         <button class="filter-btn">Price</button>
         <button class="filter-btn">Radius</button>
@@ -35,26 +36,28 @@
 
     <!-- Main Search Results Content -->
     <main class="search-results-page">
-        <!-- Results List -->
         <section class="results-list">
+            {% for property in properties %}
             <div class="result-item">
-                <div class="image-placeholder">Image</div>
-                <div class="result-details">
-                    <h3>£2000</h3>
-                    <p>Beds | Showers</p>
-                    <p>Palmerston Place, Edinburgh, EH12</p>
-                    <p>Immaculately presented two-bedroom apartment...</p>
-                    <p><button class="listing-btn">Listing Company</button></p>
+                <div class="property-image">
+                    {% if property.main_image_url %}
+                    <img src="{{ property.main_image_url }}" alt="Property Image">
+                    {% else %}
+                    <div class="image-placeholder">No Image Available</div>
+                    {% endif %}
+                </div>
+                <div class="results-details">
+                    <h3>{{ property.price_pcm }}</h3>
+                    <h4 class="address">{{ property.address }}</h4>
+                    <p class="description">{{ property.description }}</p>
+                    <div class="results-icons">
+                        <span class="detail-item"><i class="fas fa-bed"></i> Beds 2</span>
+                        <span class="detail-item"><i class="fas fa-shower"></i> Showers 1</span>
+                    </div>
                 </div>
             </div>
-            <!-- Add more result-item divs as needed for mockup -->
+            {% endfor %}
         </section>
-
-        <!-- Map Section -->
-        <aside class="map-section">
-            <div class="map-placeholder">Map</div>
-            <button class="edit-area-btn">Edit This Area</button>
-        </aside>
     </main>
 </body>
 </html>

@@ -1,0 +1,178 @@
+/* Search Page Layout */
+/* Styles the main container for the search page */
+.search-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    text-align: left;
+}
+
+/* Search Form */
+/* Styles the form container on the search page */
+.search-form {
+    width: 80%;
+    max-width: 400px;
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+    margin-bottom: 2rem;
+}
+
+/* Heading style within the search form */
+.search-form h1 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+/* Labels for form fields */
+.search-form label {
+    display: block;
+    font-weight: bold;
+    margin: 0.5rem 0 0.25rem;
+}
+
+/* Input fields within the search form */
+.search-form input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Submit button within the search form */
+.search-form button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #b5651d;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the search form button */
+.search-form button:hover {
+    background-color: #944a17;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Search Results Layout */
+.search-results-page {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Corrected 'left' to 'flex-start' */
+}
+
+/* Results List Styling */
+.results-list {
+    width: 100%; /* Full width of the container */
+    max-width: 1200px; /* Max width for the content */
+    margin-left: 20px;
+    display: grid;
+    grid-template-columns: 1fr; /* Single column layout */
+    gap: 15px;
+}
+
+.result-item {
+    background-color: #f9f9f9;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    display: flex;
+    align-items: flex-start; /* Ensure items start from the top */
+    width: 100%;
+}
+
+
+
+.property-image img {
+    border-radius: 20px;
+    width: 400px;
+    height: auto;
+    object-fit: cover;
+}
+
+.results-details {
+    padding-left: 20px; /* Space between image and details */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align items at the top */
+}
+
+.results-details h3 {
+    margin: 0;
+    color: #b5651d;
+    font-size: 1.4rem; /* Larger font for price */
+}
+
+.results-details h4 {
+    padding:4px;
+    color: #464545;
+    font-size: 1.0rem; /* Larger font for price */
+}
+
+.results-details p {
+    margin-top: 5px; /* Small top margin for spacing */
+    color: #666;
+    font-size: 0.9rem; /* Smaller font for details */
+}
+
+.results-icons {
+    display: flex;
+    width: 200px;
+    justify-content: space-between; /* Distribute space evenly */
+    margin-top: 20px; /* Space above the row */
+}
+
+
+/* Search and Filter Bar */
+.search-modify {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+.search, .filter-btn {
+    padding: 10px;
+    margin: 0 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.filter-btn {
+    background-color: #ddd;
+    cursor: pointer;
+}
+
+.filter-btn:hover {
+    background-color: #b5651d;
+    color: white;
+}
+
+/* Styles for inputs within the search-modify section */
+.search-modify input {
+    padding: 10px;
+    margin: 0 10px;
+    border: 1px solid #796666;
+    border-radius: 10px;
+}
