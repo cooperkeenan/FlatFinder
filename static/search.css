@@ -88,7 +88,7 @@
     margin-left: 100px;
     display: grid;
     grid-template-columns: 1fr; /* Single column layout */
-    gap: 15px;
+    gap: 25px;
 }
 
 .result-item {
@@ -201,36 +201,47 @@
 
 
 
-/* Search and Filter Bar */
+/* Search modification section styling */
 .search-modify {
-    width: 100%;
     display: flex;
-    justify-content: center;
-    padding: 20px;
-    background-color: #f0f0f0;
+    width: 100%; /* Ensure it fills the container */
+    max-width: 1000px; /* Match the property cards width */
+    justify-content: space-between; /* Distribute space between items */
+    padding: 10px 20px; /* Consistent padding */
+    background-color: #f0f0f0; /* Background color applied */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    margin-left: 125px; /* Centering and adding vertical space */
+    margin-top: 20px;
 }
 
+/* Individual button and input adjustments */
 .search, .filter-btn {
-    padding: 10px;
-    margin: 0 10px;
+    padding: 10px 20px;
+    background-color: white; /* Ensures background color is white */
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 20px; /* Rounded corners for aesthetic */
+    margin-right: 20px; /* Right margin for spacing */
 }
 
+.search {
+    flex-grow: 0.9; /* Allows the search input to grow and fill the space appropriately */
+}
+
+/* Hover effects and active states */
+.filter-btn:hover, .filter-btn.active {
+    background-color: #b5651d; /* Darker color on hover and active */
+    color: white; /* Text color change for better visibility */
+}
+
+/* Fine-tune button positions if necessary */
 .filter-btn {
-    background-color: #ddd;
-    cursor: pointer;
+    cursor: pointer; /* Ensures it's clear the buttons are interactive */
 }
 
-.filter-btn:hover {
-    background-color: #b5651d;
-    color: white;
+/* Ensuring the search bar aligns perfectly */
+.search-modify {
+    align-items: center; /* Vertically aligns all items in the bar */
 }
 
-/* Styles for inputs within the search-modify section */
-.search-modify input {
-    padding: 10px;
-    margin: 0 10px;
-    border: 1px solid #796666;
-    border-radius: 10px;
-}
+/* This CSS ensures that your search bar aligns with the width and positioning of your property cards while maintaining a clean and professional look. Adjust the `max-width`, `margin`, and `padding` values to better fit your specific layout if it's still off by a few pixels.
