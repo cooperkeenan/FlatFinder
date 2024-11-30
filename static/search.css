@@ -65,6 +65,52 @@
 
 
 
+/* Search modification section styling */
+.search-modify {
+    display: flex;
+    width: 100%; /* Ensure it fills the container */
+    max-width: 1000px; /* Match the property cards width */
+    justify-content: space-between; /* Distribute space between items */
+    padding: 10px 20px; /* Consistent padding */
+    background-color: #f0f0f0; /* Background color applied */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    margin-left: 125px; /* Centering and adding vertical space */
+    margin-top: 20px;
+}
+
+/* Individual button and input adjustments */
+.search, .filter-btn {
+    padding: 10px;
+    background-color: white; /* Ensures background color is white */
+    border: 1px solid #ddd;
+    border-radius: 20px; /* Rounded corners for aesthetic */
+    margin-right: 20px; /* Right margin for spacing */
+}
+
+.search {
+    flex-grow: 1; /* Allows the search input to grow and fill the space appropriately */
+}
+
+/* Hover effects and active states */
+.filter-btn:hover, .filter-btn.active {
+    background-color: #b5651d; /* Darker color on hover and active */
+    color: white; /* Text color change for better visibility */
+}
+
+/* Fine-tune button positions if necessary */
+.filter-btn {
+    cursor: pointer; /* Ensures it's clear the buttons are interactive */
+}
+
+/* Ensuring the search bar aligns perfectly */
+.search-modify {
+    align-items: center; /* Vertically aligns all items in the bar */
+}
+
+
+
+
 
 
 
@@ -94,12 +140,18 @@
 .result-item {
     background-color: #f9f9f9;
     border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: flex-start; /* Align items at the top */
     width: 100%;
     height: auto; /* Adjust based on content or set a fixed height */
 }
+
+.result-item-link {
+    text-decoration: none; /* Removes underline from links */
+    color: inherit; /* Inherits text color from parent or specified in CSS */
+}
+
 
 .property-image {
     flex: 0 0 400px; /* flex-grow, flex-shrink, flex-basis */
@@ -206,48 +258,3 @@
 
 
 
-
-/* Search modification section styling */
-.search-modify {
-    display: flex;
-    width: 100%; /* Ensure it fills the container */
-    max-width: 1000px; /* Match the property cards width */
-    justify-content: space-between; /* Distribute space between items */
-    padding: 10px 20px; /* Consistent padding */
-    background-color: #f0f0f0; /* Background color applied */
-    border-radius: 20px; /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
-    margin-left: 125px; /* Centering and adding vertical space */
-    margin-top: 20px;
-}
-
-/* Individual button and input adjustments */
-.search, .filter-btn {
-    padding: 10px;
-    background-color: white; /* Ensures background color is white */
-    border: 1px solid #ddd;
-    border-radius: 20px; /* Rounded corners for aesthetic */
-    margin-right: 20px; /* Right margin for spacing */
-}
-
-.search {
-    flex-grow: 1; /* Allows the search input to grow and fill the space appropriately */
-}
-
-/* Hover effects and active states */
-.filter-btn:hover, .filter-btn.active {
-    background-color: #b5651d; /* Darker color on hover and active */
-    color: white; /* Text color change for better visibility */
-}
-
-/* Fine-tune button positions if necessary */
-.filter-btn {
-    cursor: pointer; /* Ensures it's clear the buttons are interactive */
-}
-
-/* Ensuring the search bar aligns perfectly */
-.search-modify {
-    align-items: center; /* Vertically aligns all items in the bar */
-}
-
-/* This CSS ensures that your search bar aligns with the width and positioning of your property cards while maintaining a clean and professional look. Adjust the `max-width`, `margin`, and `padding` values to better fit your specific layout if it's still off by a few pixels.
