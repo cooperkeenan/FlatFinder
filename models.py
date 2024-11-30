@@ -40,4 +40,3 @@ class Checklist(db.Model):
     availability_date = db.Column(db.Date)
     parking = db.Column(db.Boolean)
 
-# You can define other models like Customer, Viewing, Message etc. as needed.

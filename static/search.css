@@ -150,7 +150,6 @@
 
 .results-icons {
     display: flex;
-    align-items: center; /* Ensure icons and text are aligned at their center */
     justify-content: flex-start; /* Align icons to the start of the container */
     gap: 15px; /* Spacing between each icon and text */
     margin-top: 20px; /* Space above the icon row */
@@ -158,37 +157,44 @@
 
 
 .results-extras {
+    
     display: flex;
-    align-items: center; /* Align items in line vertically */
+    align-items: center; /* Align items at the end of the container */
     justify-content: space-between; /* Space out items in the container */
-    margin-top: 40px; /* Adjust margin as needed */
     width: 100%; /* Full width of the container */
-    padding-right: 20px;
+
+}
+
+.results-logo {
+    margin-top: 40px;
+    margin-bottom: 10px;
 }
 
 .results-extras img {
-    margin-top: px;
-    vertical-align: middle;
-    width: 100px; /* Example size, adjust as needed */
-    height: auto; /* Maintain aspect ratio */
-    margin-right: 10px; /* Space between logo and text or other elements */
+    max-width: 75px; /* Maximum width for the logos */
+    max-height: 50px; /* Maximum height for the logos */
+    align-self: bottom; /* Aligns the image itself if not filling the full height */
+    vertical-align: bottom;
 }
 
 
 
 .save-btn {
-    padding: 8px 16px; /* Sufficient padding for better touch targets */
+    padding: 8px 10px; /* Sufficient padding for better touch targets */
     font-size: 16px; /* Visible and clear font size */
     color: #fff; /* White text color for visibility */
     background-color: #b5651d; /* Brand color or choose another that fits */
     border: none; /* No border for a modern look */
-    border-radius: 5px; /* Slight rounding of corners */
     cursor: pointer; /* Cursor pointer to indicate clickable */
     display: flex; /* Using flex to center content inside the button */
     align-items: center; /* Align items vertically */
     justify-content: center; /* Center content horizontally */
     transition: background-color 0.3s; /* Smooth transition for hover */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    padding-right: 30px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+
 }
 
 .save-btn:hover {
@@ -217,7 +223,7 @@
 
 /* Individual button and input adjustments */
 .search, .filter-btn {
-    padding: 10px 20px;
+    padding: 10px;
     background-color: white; /* Ensures background color is white */
     border: 1px solid #ddd;
     border-radius: 20px; /* Rounded corners for aesthetic */
@@ -225,7 +231,7 @@
 }
 
 .search {
-    flex-grow: 0.9; /* Allows the search input to grow and fill the space appropriately */
+    flex-grow: 1; /* Allows the search input to grow and fill the space appropriately */
 }
 
 /* Hover effects and active states */
