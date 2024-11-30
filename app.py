@@ -24,19 +24,27 @@ def search():
     return render_template('search.html')
 
 
-
-@app.route('/search/results')
 @app.route('/search/results')
 def search_results():
-    # Get properties without filters
     properties = Property.query.all()
     return render_template('search_results.html', properties=properties)
-
+ 
 
 
 @app.route('/viewings')
 def viewings():
     return render_template('viewing_manager.html')
+
+
+
+@app.route('/property/<property_id>')
+def property_detail(property_id):
+    property = Property.query.get(property_id)
+    if property:
+        return render_template('view_property.html', property=property)
+    else:
+        return "Property not found", 404
+
 
 @app.route('/profile')
 def profile():
@@ -49,6 +57,10 @@ def lister():
 @app.route('/contact')
 def contact():
     return "<h1>Contact Page</h1>"
+
+
+
+
 
 @app.route('/test-db')
 def test_db():

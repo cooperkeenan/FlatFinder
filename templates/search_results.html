@@ -39,29 +39,34 @@
         <section class="results-list">
             {% for property in properties %}
             <div class="result-item">
+                <!-- Property image remains outside the link to avoid it being part of the navigation action -->
                 <div class="property-image">
+                    {% if property.main_image_url %}
                     <img src="{{ property.main_image_url }}" alt="Property Image">
+                    {% else %}
+                    <div class="image-placeholder">No Image Available</div>
+                    {% endif %}
                 </div>
-
+                
+                <!-- Only the details part is clickable, making it a link to the property details -->
                 <div class="results-details">
-                    <h3>{{ property.price_pcm }}</h3>
-                    <h4 class="address">{{ property.address }}</h4>
-                    <p class="description">{{ property.description }}</p>
-                    <div class="results-icons">
-                        <span class="detail-item"><i class="fas fa-bed"></i> Beds 2</span>
-                        <span class="detail-item"><i class="fas fa-shower"></i> Showers 1</span>
-                    </div>
-                    <p>Date Added: {{ property.date_added }}</p>
-                    <div class="results-extras">
-                        
-                        <div class="results-logo">
-                            <img src="{{ property.lister_logo }}"> 
+                    <a href="{{ url_for('property_detail', property_id=property.id) }}" class="result-item-link">
+                        <h3>{{ property.price_pcm }}</h3>
+                        <h4 class="address">{{ property.address }}</h4>
+                        <p class="description">{{ property.description }}</p>
+                        <div class="results-icons">
+                            <span class="detail-item"><i class="fas fa-bed"></i> Beds {{ property.bedrooms }}</span>
+                            <span class="detail-item"><i class="fas fa-shower"></i> Showers {{ property.bathrooms }}</span>
                         </div>
-            
+                        <p>Date Added: {{ property.date_added }}</p>
+                    </a>
+                    <!-- Save button remains outside the link -->
+                    <div class="results-extras">
+                        <div class="results-logo">
+                            <img src="{{ property.lister_logo }}">
+                        </div>
                         <button class="save-btn"><i class="fas fa-heart"></i></button>
                     </div>
-                </div>
-
                 </div>
             </div>
             {% endfor %}
