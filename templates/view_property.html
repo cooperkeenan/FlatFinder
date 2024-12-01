@@ -61,20 +61,29 @@
              
             <div class="divider"></div>
 
+            <h2>Property Description & Key Features</h3>
+            <div class="key-features">
+                <div class="features-left">
+                    <li>Very Spacious Rooms</li>
+                    <li>Private Parking Space</li>
+                    <li>Shower</li>
+                    <li>Fridge Freezer</li>
+                </div>
+                <div class="features-right">
+                    <li>Main Door and Terrace</li>
+                    <li>Freshly Decorated</li>
+                    <li>Washing machine</li>
+                    <li>Balcony</li>
+                </div>
+            </div>
 
-        
-        
+            <div class="description">
+                <p>{{ property.full_description | replace('\n', '<br>') | safe }}</p>
+            </div>
+            
 
-        <div class="description">
-            <ul>
-                <li>Price: {{ property.price_pcm }}</li>
-                <li>Beds: {{ property.bedrooms }}</li>
-                <li>Showers: {{ property.bathrooms }}</li>
-                <li>Date Added: {{ property.date_added }}</li>
-                <li>Location: {{ property.location }}</li>
-            </ul>
-        </div>
-        <div><img src="{{ property.lister_logo }}" alt="Lister Logo"></div>
+    
+
     </main>
 </body>
 </html>
