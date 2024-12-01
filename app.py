@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from models import db
 from models import Property
+import json
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flatfinder.db'
@@ -40,10 +41,9 @@ def viewings():
 @app.route('/property/<property_id>')
 def property_detail(property_id):
     property = Property.query.get(property_id)
-    if property:
-        return render_template('view_property.html', property=property)
-    else:
-        return "Property not found", 404
+    image_urls = json.loads(property.image_urls)
+    return render_template('view_property.html', property=property, image_urls=image_urls)
+
 
 
 @app.route('/profile')

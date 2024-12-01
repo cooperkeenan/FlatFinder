@@ -77,8 +77,11 @@ def insert_data():
                     lister_logo=customer_data.get('brandPlusLogoUrl'), 
                     location=f"{listing['location']['latitude']}, {listing['location']['longitude']}",
                     listing_company=listing.get('customer', {}).get('branchDisplayName', ''),
-                    date_added=format_date(listing.get('firstVisibleDate'))
+                    date_added=format_date(listing.get('firstVisibleDate')),
+                    flat_type=listing['propertySubType'],
+                    number_floorplans = listing.get("numberOfFloorplans", 0)
                     
+
                 )
                 db.session.add(new_property)
                 print(f"Inserted new property: {property_id}")
