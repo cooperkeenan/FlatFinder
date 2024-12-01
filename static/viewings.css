@@ -1,0 +1,63 @@
+/* VIEWINGS MANAGER */
+
+
+.viewing-card {
+    display: flex;
+    width: 60%;
+    background-color: white;
+    margin: 20px;
+    margin-left: 200px;
+    margin-top: 50px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.thumbnail{
+    width: 20%;
+    height: 200px;
+    background-color: #eeee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.viewing-details {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.viewing-info {
+    list-style: none;
+    padding: 0;
+}
+
+.viewing-info li {
+    margin-bottom: 5px;
+}
+
+.viewing-description {
+    margin-top: 10px;
+}
+
+.viewing-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.status {
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+}
+
+.confirmed {
+    background-color: lightgreen;
+}
+
+.date {
+    font-size: 0.8rem;
+}
