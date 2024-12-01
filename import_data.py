@@ -50,9 +50,15 @@ def insert_data():
             property_id = listing['id']
             existing_property = Property.query.filter_by(id=property_id).first()
 
+            location_data = listing.get('location', {})
+            latitude = location_data.get('latitude')
+            longitude = location_data.get('longitude')
+
             if existing_property:
                 # Update existing property
                 existing_property.address = listing['displayAddress']
+                existing_property.latitude = latitude
+                existing_property.longitude = longitude
                 existing_property.bedrooms = listing.get('bedrooms', 0)
                 existing_property.bathrooms = listing.get('bathrooms', 0)
                 existing_property.price_pcm = listing['price']['displayPrices'][0]['displayPrice'] if 'displayPrices' in listing['price'] else None
@@ -68,6 +74,8 @@ def insert_data():
                 new_property = Property(
                     id=property_id,
                     address=listing['displayAddress'],
+                    latitude=latitude,
+                    longitude=longitude,
                     bedrooms=listing.get('bedrooms', 0),
                     bathrooms=listing.get('bathrooms', 0),
                     price_pcm=listing['price']['displayPrices'][0]['displayPrice'] if 'displayPrices' in listing['price'] else None,
@@ -81,7 +89,6 @@ def insert_data():
                     date_added=format_date(listing.get('firstVisibleDate')),
                     flat_type=listing['propertySubType'],
                     number_floorplans = listing.get("numberOfFloorplans", 0)
-                    
 
                 )
                 db.session.add(new_property)

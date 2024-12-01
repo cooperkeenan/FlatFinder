@@ -51,6 +51,7 @@
     flex-direction: column;
     margin-top: 50px;
     margin-left: 180px;
+    margin-bottom: 300px;
     max-width: 880px;
     gap: 10px;
 }
@@ -124,8 +125,15 @@
     color: #646464;
     font-size: 18px;
     line-height: 1.6;
-    margin-bottom: 300px; 
+    margin-bottom: 50px; 
+}
 
+#map {
+    height: 500px;
+    width: 100%;
+    margin: 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
 }
 
 
@@ -198,3 +206,6 @@
     left: 0;
     border-radius: 3px 0 0 3px;
 }
+
+
+

@@ -27,3 +27,23 @@ function showSlides(n) {
     }
     slides[slideIndex-1].style.display = "block";
 }
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Event listener for the main image
+    var mainImage = document.getElementById('main-image');
+    mainImage.addEventListener('click', function() {
+        openModal();
+        currentSlide(1);
+    });
+
+    // Event listeners for the other images
+    var images = document.querySelectorAll('.other-image');
+    images.forEach(function(img) {
+        img.addEventListener('click', function() {
+            var slideIndex = this.getAttribute('data-slide');
+            openModal();
+            currentSlide(parseInt(slideIndex));
+        });
+    });
+});
