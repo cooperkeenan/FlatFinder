@@ -1,34 +1,27 @@
 /* Reset and Basic Styling */
-/* Sets default styles to remove browser-specific padding, margin, and box-sizing, 
-   and applies a common font to all elements */
-   * {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
 
-/* Sets default text color for the entire body */
 body {
     color: #333;
 }
 
 /* Navigation Bar */
-/* Styles the header area, giving it a background color and padding */
 header {
     background-color: #f0f0f0;
     padding: 1rem;
 }
 
-/* Flex container for navigation, aligns items center vertically and spaces out links */
 nav {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Spread out links */
+    justify-content: space-between;
 }
 
-/* Logo Styling */
-/* Styles the logo text with specific font weight, size, margin, and color */
 .logo {
     font-weight: bold;
     font-size: 1.5rem;
@@ -36,14 +29,11 @@ nav {
     color: #b5651d;
 }
 
-/* Styles the logo link to match the logo color and removes underline */
 .logo a {
     color: #b5651d;
     text-decoration: none;
 }
 
-/* Navigation Links */
-/* Container for the navigation links, displayed in a row with even spacing */
 .nav-links {
     list-style: none;
     display: flex;
@@ -53,60 +43,53 @@ nav {
     margin-right: 100px;
 }
 
-/* Individual navigation link styling, sets color, removes underline, and adds bold font */
 .nav-links a {
     text-decoration: none;
     color: #333;
     font-weight: bold;
-    transition: color 0.3s ease; /* Smooth color transition on hover */
+    transition: color 0.3s ease;
 }
 
-/* Hover effect for navigation links */
 .nav-links a:hover {
-    color: #b5651d; /* Changes color on hover */
+    color: #b5651d;
 }
 
 /* Hero Section */
-/* Main container for hero section, positions it to allow search bar overlay */
 .hero {
-    position: relative; /* Allows search bar to be positioned relative to this container */
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #eaeaea; /* Background color of the hero section */
+    background-color: #eaeaea;
     height: 400px;
 }
 
-/* Placeholder for hero image background */
 .hero-image {
     width: 100%;
     height: 100%;
-    background-color: #ccc; /* Placeholder color for image */
+    background-color: #ccc;
 }
 
 /* Search Bar */
-/* Styles the search bar container, positioned over the hero section */
 .search-bar {
     position: absolute;
-    top: 100%; /* Aligns the search bar in the center vertically */
-    left: 50%; /* Centers the search bar horizontally */
-    transform: translate(-50%, -50%); /* Moves it exactly to the center */
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
     gap: 0.5rem;
     background-color: #ddd;
     padding: 1rem;
     border-radius: 5px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow for contrast */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Styles for the search label text */
 .search-bar label {
     font-weight: normal;
     margin-right: 1rem;
 }
 
-/* Styles the search input field */
 .search-bar input {
     padding: 0.5rem;
     width: 250px;
@@ -114,7 +97,6 @@ nav {
     border-radius: 3px;
 }
 
-/* Styles the search button within the search bar */
 .search-bar button {
     padding: 0.5rem 1rem;
     background-color: #b5651d;
@@ -122,24 +104,21 @@ nav {
     border: none;
     border-radius: 3px;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Smooth color change on hover */
+    transition: background-color 0.3s ease;
 }
 
-/* Hover effect for the search button */
 .search-bar button:hover {
     background-color: #944a17;
 }
 
 /* About Section */
-/* Styles the about section container and positions its items with spacing */
 .about {
     display: flex;
     justify-content: space-around;
     padding: 1rem;
-    margin-top: 80px; /* Adds space above the About section */
+    margin-top: 80px;
 }
 
-/* Individual box within the about section */
 .about-box {
     width: 300px;
     height: 200px;
@@ -149,270 +128,5 @@ nav {
     justify-content: center;
     color: #333;
     border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adds a soft shadow */
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.for-you-page {
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #fff;
-}
-
-.property-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    background: #f4f4f4;
-    padding: 1rem;
-    border-radius: 10px;
-    width: 70%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 2rem;
-}
-
-
-.left-column {
-    width: 60%;
-}
-
-.right-column {
-    width: 35%;
-    padding-left: 20px;
-}
-
-.image-gallery {
-    display: flex;
-    width: 100%;
-    gap: 10px;
-    align-items: flex-start;
-    margin-top: 35px;
-    margin-bottom: 10px;
-}
-
-.large-image {
-    background-color: #ccc;
-    width: 50%;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-}
-
-.small-images {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 48%; /* Adjusted to fill remaining space with a gap */
-}
-
-.small-image {
-    background-color: #ddd;
-    height: 145px; /* Adjusted for better fit */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-    flex-grow: 1; /* Makes each small image take equal height */
-}
-
-
-/* Map Section Styling */
-.map-section {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-}
-
-.map-placeholder {
-    width: 100%;
-    height: 250px;
-    background-color: #eaeaea;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #666;
-    border-radius: 8px;
-    font-size: 0.9rem;
-}
-
-
-.description-tile {
-    margin-top: 10px;
-    height: 250px;
-    background-color: #eaeaea;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-.action-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-}
-
-.action-buttons button {
-    border: none;
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.dislike-btn {
-    background-color: #f44336;
-    color: #fff;
-}
-
-.like-btn {
-    background-color: #4caf50;
-    color: #fff;
-}
-
-.action-buttons button:hover {
-    opacity: 0.8;
-}
-
-
-.property-details {
-    display: flex;
-    justify-content: space-between; /* Ensures space is distributed between columns */
-    width: 50%;
-    padding: 0; /* Remove padding inside the container */
-}
-
-.details-column {
-    flex: 1; /* Each column takes equal width */
-    padding: 10px 5px; /* Vertical padding of 10px, horizontal padding of 5px */
-}
-
-.detail-item {
-    display: block;
-    margin-bottom: 10px; /* Space between items */
-}
-
-
-.details-row.lower {
-    display: flex;
-    justify-content: space-around; /* Distribute space evenly */
-    align-items: center; /* Center items vertically */
-    margin-top: 20px; /* Space above the row */
-}
-
-.detail-item {
-    display: flex;
-    align-items: center; /* Align the icon and text */
-    font-size: 0.9rem; /* Adjust text size */
-}
-
-.detail-item i {
-    margin-right: 5px; /* Space between icon and text */
-    color: #666; /* Icon color, choose as per your design */
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* VIEWINGS */
-
-
-.viewing-card {
-    display: flex;
-    width: 60%;
-    background-color: white;
-    margin: 20px;
-    margin-left: 200px;
-    margin-top: 50px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.thumbnail{
-    width: 20%;
-    height: 200px;
-    background-color: #eeee;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #000000;
-    border-radius: 8px;
-    font-size: 0.9rem;
-}
-
-.viewing-details {
-    padding: 20px;
-    flex-grow: 1;
-}
-
-.viewing-info {
-    list-style: none;
-    padding: 0;
-}
-
-.viewing-info li {
-    margin-bottom: 5px;
-}
-
-.viewing-description {
-    margin-top: 10px;
-}
-
-.viewing-status {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 10px;
-}
-
-.status {
-    padding: 5px;
-    border-radius: 5px;
-    font-size: 0.8rem;
-}
-
-.confirmed {
-    background-color: lightgreen;
-}
-
-.date {
-    font-size: 0.8rem;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
