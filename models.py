@@ -19,6 +19,8 @@ class Property(db.Model):
     listing_company = db.Column(db.String(255))
     date_added = db.Column(db.String(255))
     lister_logo = db.Column(db.String(500))
+    flat_type = db.Column(db.String(500))
+    number_floorplans = db.Column(db.Integer)
 
 
 class Lister(db.Model):

@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For You - Flat Finder</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='property.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
 </head>
 <body>
     <header>
@@ -23,16 +23,57 @@
         </nav>
     </header>
     <main>
-        <h1>{{ property.address }}</h1>
-        <img src="{{ property.main_image_url }}" alt="Main Image">
-        <p>{{ property.description }}</p>
-        <ul>
-            <li>Price: {{ property.price_pcm }}</li>
-            <li>Beds: {{ property.bedrooms }}</li>
-            <li>Showers: {{ property.bathrooms }}</li>
-            <li>Date Added: {{ property.date_added }}</li>
-            <li>Location: {{ property.location }}</li>
-        </ul>
+        <a href="/search/results"  class="return-search"> < Back to search results</a>
+
+        <div class="property-images">
+            <div class="main-image">
+                <img src="{{ property.main_image_url }}" alt="Main Image">
+            </div>
+            <div class="other-images">
+                <img src="{{ image_urls[1] }}" alt="Other Image">
+                <img src="{{ image_urls[2] }}" alt="Other Image">
+            </div>
+        </div>
+
+        <div class="listing-details">
+            <div class="price">
+                <p>{{ property.price_pcm }}</p>
+            </div>
+            <div class="address">
+                <p>{{ property.address }}</p>
+            </div>
+            <div class="date-added">
+                <p>Date listed: {{ property.date_added }}</p>
+            </div>
+            
+            <div class="divider"></div>
+            <div class="icons">
+                <span class="detail-item"><i class="fas fa-bed"></i> Beds {{ property.bedrooms }}</span>
+                <span class="detail-item"><i class="fas fa-shower"></i> Showers {{ property.bathrooms }}</span>
+                <span class="detail-item"><i class="fas fa-house"></i> {{ property.flat_type }}</span>
+                <div class="floorplan">
+                {% if property.number_floorplans > 0 %}
+                <img src="{{ url_for('static', filename='images/floorplan.png') }}">
+                <p>Floor plan</p>
+                {% endif %}
+                </div>
+            </div>
+             
+            <div class="divider"></div>
+
+
+        
+        
+
+        <div class="description">
+            <ul>
+                <li>Price: {{ property.price_pcm }}</li>
+                <li>Beds: {{ property.bedrooms }}</li>
+                <li>Showers: {{ property.bathrooms }}</li>
+                <li>Date Added: {{ property.date_added }}</li>
+                <li>Location: {{ property.location }}</li>
+            </ul>
+        </div>
         <div><img src="{{ property.lister_logo }}" alt="Lister Logo"></div>
     </main>
 </body>
