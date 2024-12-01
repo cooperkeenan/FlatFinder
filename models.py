@@ -13,6 +13,7 @@ class Property(db.Model):
     price_pcm = db.Column(db.String(100))  # Storing price as string to accommodate currency symbols
     price_pw = db.Column(db.String(100))
     description = db.Column(db.Text)
+    full_description = db.Column(db.Text)
     main_image_url = db.Column(db.String(500))
     image_urls = db.Column(db.Text)  # JSON encoded list of URLs
     location = db.Column(db.String(255))

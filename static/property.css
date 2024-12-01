@@ -27,6 +27,8 @@
     height: 600px;
     width: 100%;
     border-radius: 10px;
+    max-width: 900px;
+    max-height: 700px;
 }
 
 .other-images {
@@ -53,9 +55,8 @@
     gap: 10px;
 }
 
-
 .price {
-    color: #333;
+    color: #b5651d;
     font-size: 40px; 
     font-weight: bold;   
 }
@@ -73,7 +74,7 @@
     font-weight: 700px;
 }
 
-
+/* Icons */
 .icons {
     display: flex;
     flex-direction: row;
@@ -94,11 +95,35 @@
     max-height: 30px;
 }
 
-
-
 .divider {
     height: 1px;
-    background-color: #717070;
-    width: 100%;         /* Full width */
-    margin: 20px 0;      /* Space above and below */
+    background-color: #b5651d;
+    width: 100%;        
+    margin: 20px 0;      
+}
+
+
+/* Key Features & description */
+.key-features {
+    display: flex;
+    flex-direction: row;
+    gap: 200px;
+    font-size: 20px;
+    color: #464646;
+    margin-bottom: 50px;
+    list-style-type: circle;
+
+}
+
+.features-left li, .features-right li {
+    margin-top: 20px;
+    margin-bottom: 10px; 
+}
+
+.description {
+    color: #646464;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 300px; 
+
 }

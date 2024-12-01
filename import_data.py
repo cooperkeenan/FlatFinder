@@ -72,6 +72,7 @@ def insert_data():
                     bathrooms=listing.get('bathrooms', 0),
                     price_pcm=listing['price']['displayPrices'][0]['displayPrice'] if 'displayPrices' in listing['price'] else None,
                     description=listing.get('summary'),
+                    full_description=listing.get('description'),
                     main_image_url=main_image_url,
                     image_urls=json.dumps(image_urls),
                     lister_logo=customer_data.get('brandPlusLogoUrl'), 
