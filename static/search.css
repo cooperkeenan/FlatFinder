@@ -88,6 +88,11 @@
     margin-right: 20px; /* Right margin for spacing */
 }
 
+
+.bedrooms {
+    border-radius: 10px;
+}
+
 .search {
     flex-grow: 1; /* Allows the search input to grow and fill the space appropriately */
 }
