@@ -14,8 +14,7 @@ def filter_price(properties, min_price=None, max_price=None):
         if ((min_price is None or prop_price >= min_price) and 
             (max_price is None or prop_price <= max_price)):
             filtered.append(prop)
-        else:
-            return properties
+
     return filtered
 
 
@@ -24,10 +23,7 @@ def filter_bedrooms(properties, bedrooms=None):
     filtered = []
     for prop in properties:
         if bedrooms is None or prop.bedrooms == bedrooms:
-            bedrooms = int(bedrooms) 
             filtered.append(prop)
-        else:
-            return properties
 
     return filtered 
 
@@ -39,8 +35,7 @@ def filter_location(properties, location=None):
         location = location.lower().strip()
         if location in prop.address.lower():
             filtered.append(prop)
-        else:
-            return properties
+
     return filtered
 
 
