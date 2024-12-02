@@ -11,7 +11,7 @@ def filter_price(properties, min_price=None, max_price=None):
     filtered = []
     for prop in properties:
         prop_price = clean_price(prop.price_pcm)
-        if ((min_price is None or prop_price >= min_price) and
+        if ((min_price is None or prop_price >= min_price) and 
             (max_price is None or prop_price <= max_price)):
             filtered.append(prop)
         else:
@@ -22,7 +22,7 @@ def filter_price(properties, min_price=None, max_price=None):
 #Filter Bedrooms
 def filter_bedrooms(properties, bedrooms=None):
     filtered = []
-    for prop in properties: 
+    for prop in properties:
         if bedrooms is None or prop.bedrooms == bedrooms:
             bedrooms = int(bedrooms) 
             filtered.append(prop)

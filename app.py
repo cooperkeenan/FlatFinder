@@ -38,6 +38,7 @@ def search_results():
     # remove symobols 
     min_price = clean_price(min_price) if min_price else None
     max_price = clean_price(max_price) if max_price else None
+    bedrooms = int(bedrooms) if bedrooms else None
 
     properties = Property.query.all()
 
