@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from models import db
 from models import Property
 import json
+from property_filters import filter_properties, clean_price
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flatfinder.db'
@@ -9,17 +10,17 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
 
-# Home page route (linked to the logo)
+# Home page 
 @app.route('/')
 def home():
-    return render_template('index.html')  # This is the main homepage template
+    return render_template('index.html')  
 
-# For You page route
+# For You page 
 @app.route('/for-you')
 def for_you():
-    return render_template('for_you.html')  # This is the "For You" page template
+    return render_template('for_you.html')  
 
-# Add other placeholder routes for now
+
 @app.route('/search')
 def search():
     return render_template('search.html')
@@ -27,9 +28,16 @@ def search():
 
 @app.route('/search/results')
 def search_results():
+    min_price = request.args.get('min_price')
+    max_price = request.args.get('max_price')
+
+    min_price = clean_price(min_price) if min_price else None
+    max_price = clean_price(max_price) if max_price else None
+
     properties = Property.query.all()
-    return render_template('search_results.html', properties=properties)
- 
+    filtered_properties = filter_properties(properties, min_price, max_price)
+    return render_template('search_results.html', properties=filtered_properties)
+
 
 
 @app.route('/viewings')
@@ -43,7 +51,6 @@ def property_detail(property_id):
     property = Property.query.get(property_id)
     image_urls = json.loads(property.image_urls)
     return render_template('view_property.html', property=property, image_urls=image_urls)
-
 
 
 @app.route('/profile')
@@ -60,15 +67,6 @@ def contact():
 
 
 
-
-
-@app.route('/test-db')
-def test_db():
-    properties = Property.query.all()  # Fetch all properties from the database
-    print("Number of properties found:", len(properties))  # Debugging line to check how many properties are fetched
-    for prop in properties:  # Print some details to ensure data is loaded correctly
-        print(prop.address, prop.price_pcm)
-    return render_template('test_db.html', properties=properties)
 
 
 @app.cli.command("init_db")
