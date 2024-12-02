@@ -30,27 +30,24 @@
             <input type="text" name="location" placeholder="Search location" value="{{ request.args.get('location', '') }}">
             
             <!-- Minimum Price Dropdown -->
-            <label for="min_price">Min Price</label>
             <select name="min_price" id="min_price">
-                <option value="">Any</option>
+                <option value="">Min Price</option>
                 {% for price in [500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3250, 3500, 3750, 4000, 4250, 4500, 4750, 5000] %}
                 <option value="{{ price }}" {{ 'selected' if request.args.get('min_price', default='')|string == price|string else '' }}>£{{ price }}</option>
                 {% endfor %}
             </select>
 
             <!-- Maximum Price Dropdown -->
-            <label for="max_price">Max Price</label>
             <select name="max_price" id="max_price">
-                <option value="">No Max</option>
+                <option value="">Max Price</option>
                 {% for price in [500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3250, 3500, 3750, 4000, 4250, 4500, 4750, 5000] %}
                 <option value="{{ price }}" {{ 'selected' if request.args.get('max_price', default='')|string == price|string else '' }}>£{{ price }}</option>
                 {% endfor %}
             </select>
 
             <!-- Bedrooms Dropdown -->
-            <label for="bedrooms">Bedrooms</label>
             <select name="bedrooms" id="bedrooms">
-                <option value="">Any</option>
+                <option value="">Bedrooms</option>
                 {% for num in range(1, 5) %}
                 <option value="{{ num }}" {{ 'selected' if request.args.get('bedrooms', '') == num|string else '' }}>
                     {{ num }}{% if num == 4 %}+{% endif %}
