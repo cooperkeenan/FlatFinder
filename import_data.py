@@ -4,12 +4,25 @@ from sqlalchemy.exc import IntegrityError
 from models import db, Property
 from app import app 
 import json
+import re
 
 # Load data from a JSON file
 def load_json(file_path):
     with open(file_path, 'r') as file:
         data = json.load(file)
     return data
+
+
+#Improve image quality 
+def upgrade_image(url):
+
+    # Remove 'dir/crop/10:9-16:9/' from the path
+    url = url.replace('://media.rightmove.co.uk:443/dir/crop/10:9-16:9/', '://media.rightmove.co.uk/')
+    url = url.replace('://media.rightmove.co.uk/dir/crop/10:9-16:9/', '://media.rightmove.co.uk/')
+    # Remove '_max_XXXxYYY' from the filename
+    url = re.sub(r'_max_\d+x\d+(?=\.(jpg|jpeg|JPG|JPEG|png|PNG|gif|GIF))', '', url)
+    return url
+
 
 # Extract image URLs and main image URL
 def extract_image_urls(property_images):
@@ -23,9 +36,15 @@ def extract_image_urls(property_images):
             return [], ''
     
     images = property_images.get('images', [])
-    image_urls = [img['srcUrl'] for img in images if 'srcUrl' in img]
+    image_urls = []
+    for img in images:
+        if 'srcUrl' in img:
+            upgraded_url = upgrade_image(img['srcUrl'])
+            image_urls.append(upgraded_url)
     main_image_url = property_images.get('mainImageSrc', '')
+    main_image_url = upgrade_image(main_image_url)
     return image_urls, main_image_url
+
 
 
 # Format the date to YYYY-MM-DD format
@@ -46,14 +65,14 @@ def insert_data():
             property_images = listing.get('propertyImages', '{}')
             image_urls, main_image_url = extract_image_urls(property_images)
             customer_data = listing.get('customer', {})
-
+    
             property_id = listing['id']
             existing_property = Property.query.filter_by(id=property_id).first()
-
+    
             location_data = listing.get('location', {})
             latitude = location_data.get('latitude')
             longitude = location_data.get('longitude')
-
+    
             if existing_property:
                 # Update existing property
                 existing_property.address = listing['displayAddress']
@@ -63,9 +82,9 @@ def insert_data():
                 existing_property.bathrooms = listing.get('bathrooms', 0)
                 existing_property.price_pcm = listing['price']['displayPrices'][0]['displayPrice'] if 'displayPrices' in listing['price'] else None
                 existing_property.description = listing.get('summary')
-                existing_property.main_image_url = listing.get('mainImageSrc', '')
-                existing_property.image_urls = json.dumps(listing.get('images', []))
-                existing_property.location = f"{listing['location']['latitude']}, {listing['location']['longitude']}"
+                existing_property.main_image_url = main_image_url  # Use upgraded URL
+                existing_property.image_urls = json.dumps(image_urls)  # Use upgraded URLs
+                existing_property.location = f"{latitude}, {longitude}"
                 existing_property.listing_company = listing.get('customer', {}).get('branchDisplayName', '')
                 existing_property.date_added = format_date(listing.get('firstVisibleDate'))
                 print(f"Updated existing property: {property_id}")
@@ -81,24 +100,24 @@ def insert_data():
                     price_pcm=listing['price']['displayPrices'][0]['displayPrice'] if 'displayPrices' in listing['price'] else None,
                     description=listing.get('summary'),
                     full_description=listing.get('description'),
-                    main_image_url=main_image_url,
-                    image_urls=json.dumps(image_urls),
-                    lister_logo=customer_data.get('brandPlusLogoUrl'), 
-                    location=f"{listing['location']['latitude']}, {listing['location']['longitude']}",
+                    main_image_url=main_image_url,  # Use upgraded URL
+                    image_urls=json.dumps(image_urls),  # Use upgraded URLs
+                    lister_logo=customer_data.get('brandPlusLogoUrl'),
+                    location=f"{latitude}, {longitude}",
                     listing_company=listing.get('customer', {}).get('branchDisplayName', ''),
                     date_added=format_date(listing.get('firstVisibleDate')),
                     flat_type=listing['propertySubType'],
-                    number_floorplans = listing.get("numberOfFloorplans", 0)
-
+                    number_floorplans=listing.get("numberOfFloorplans", 0)
                 )
                 db.session.add(new_property)
                 print(f"Inserted new property: {property_id}")
-
+    
         try:
             db.session.commit()
         except IntegrityError as e:
             db.session.rollback()
             print(f"Failed to insert or update property: {e}")
+
 
 if __name__ == '__main__':
     insert_data()
