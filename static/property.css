@@ -5,7 +5,7 @@
     display: block;
     margin-top: 30px;
     margin-left: 170px;
-    text-decoration: none; /* Removes underline from links */
+    text-decoration: none; 
     color: rgb(27, 134, 184);
 
 }
@@ -139,74 +139,95 @@
 
 
 
-/* Slide Show */ 
 
+
+
+
+
+
+/* Slide Show */ 
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.9); 
 }
 
+/* Modal Content */
 .modal-content {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
     position: relative;
     margin: auto;
     padding: 0;
-    width: 90%;
-    margin-top: 50px;
-    max-width: 1200px;
+    width: 90%; 
+    overflow: hidden;
 }
 
+/* Slides */
 .mySlides {
-    display: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 100px;
 }
 
+/* Image Inside Modal */
+.modal-content .mySlides img {
+    min-height: 700px;   
+    object-fit: contain;
+    margin: auto;
+    display: block;
+}
+
+/* Close Button */
 .close {
     position: absolute;
-    top: 10px;
-    right: 25px;
+    top: 20px;
+    right: 35px;
     color: white;
-    font-size: 35px;
+    font-size: 40px;
     font-weight: bold;
     cursor: pointer;
 }
 
-.close:hover, .close:focus {
+.close:hover {
     color: #bbb;
-    text-decoration: none;
-    cursor: pointer;
 }
 
+
+/* Navigation Buttons */
 .prev, .next {
     cursor: pointer;
     position: absolute;
     top: 50%;
-    width: auto;
+    margin-left: 40px;
+    margin-right: 40px;
+    transform: translateY(-50%); 
     padding: 16px;
-    margin-top: -50px;
     color: white;
     font-weight: bold;
-    font-size: 20px;
-    transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
+    font-size: 60px;
     user-select: none;
+}
+
+.prev:hover, .next:hover {
+    color: #bbb;
+}
+
+
+.prev {
+    left: 0;
 }
 
 .next {
     right: 0;
-    border-radius: 3px 0 0 3px;
 }
-
-.prev {
-    left: 0;
-    border-radius: 3px 0 0 3px;
-}
-
-
-
