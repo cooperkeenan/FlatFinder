@@ -15,16 +15,17 @@
 /* Images */
 .property-images {
     margin-top: 30px;
+    margin-left: 170px;
     display: flex;
     gap: 10px;
-    align-items: center;
-    justify-content: center;
-    max-height: 600px; 
+    align-items: top;
+    justify-content: left;
+    max-height: 610px; 
     width: 100%; 
 }
 
 .main-image img {
-    height: 600px;
+    height: 603px;
     width: 100%;
     border-radius: 10px;
     max-width: 900px;
