@@ -45,23 +45,24 @@
             
         </div>
 
-        <!-- The Modal/Lightbox -->
-        <div id="myModal" class="modal">
-            <span class="close cursor" onclick="closeModal()">&times;</span>
-            <div class="modal-content">
-                <div class="mySlides">
-                    <img src="{{ property.main_image_url }}" style="width:100%">
-                </div>
-                {% for url in image_urls %}
-                    <div class="mySlides">
-                        <img src="{{ url }}" style="width:100%">
-                    </div>
-                {% endfor %}
-                <!-- Next/previous controls -->
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    <!-- The Modal/Lightbox -->
+    <div id="myModal" class="modal">
+        <span class="close cursor" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <div class="mySlides">
+                <img src="{{ property.main_image_url }}">
             </div>
+            {% for url in image_urls %}
+                <div class="mySlides">
+                    <img src="{{ url }}">
+                </div>
+            {% endfor %}            
         </div>
+        <!-- Next/previous controls -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
 
         
 
