@@ -26,7 +26,8 @@
         </nav>
     </header>
     <main>
-        <a href="/search/results"  class="return-search"> < Back to search results</a>
+        <a href="{{ url_for('search_results', min_price=request.args.get('min_price', ''), max_price=request.args.get('max_price', ''), bedrooms=request.args.get('bedrooms', ''), location=request.args.get('location', '')) }}" class="return-search">← Back to search results</a>
+
 
 
         <!-- Normal Image Display -->

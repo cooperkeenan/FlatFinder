@@ -65,52 +65,67 @@
 
 
 
-/* Search modification section styling */
+
+
+
+
+
+
+
+/* Search Modification Section Styling */
 .search-modify {
     display: flex;
-    width: 100%; /* Ensure it fills the container */
-    max-width: 1000px; /* Match the property cards width */
-    justify-content: space-between; /* Distribute space between items */
-    padding: 10px 20px; /* Consistent padding */
-    background-color: #f0f0f0; /* Background color applied */
-    border-radius: 20px; /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
-    margin-left: 125px; /* Centering and adding vertical space */
+    align-items: flex-start; 
+    justify-content: flex-start; /* Align items to the start horizontally */
+    width: 100%;
+    max-width: 1000px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     margin-top: 20px;
+    margin-left: 123px ;
 }
 
-/* Individual button and input adjustments */
-.search, .filter-btn {
+/* Individual input and button adjustments */
+.search-modify input[type="text"] {
     padding: 10px;
-    background-color: white; /* Ensures background color is white */
+    margin: 10px;
     border: 1px solid #ddd;
-    border-radius: 20px; /* Rounded corners for aesthetic */
-    margin-right: 20px; /* Right margin for spacing */
-}
-
-.search {
-    flex-grow: 1; /* Allows the search input to grow and fill the space appropriately */
-}
-
-/* Hover effects and active states */
-.filter-btn:hover, .filter-btn.active {
-    background-color: #b5651d; /* Darker color on hover and active */
-    color: white; /* Text color change for better visibility */
-}
-
-/* Fine-tune button positions if necessary */
-.filter-btn {
-    cursor: pointer; /* Ensures it's clear the buttons are interactive */
-}
-
-/* Ensuring the search bar aligns perfectly */
-.search-modify {
-    align-items: center; /* Vertically aligns all items in the bar */
+    border-radius: 20px;
+    background-color: white;
+    min-width: 250px; 
 }
 
 
 
 
+.search-modify select {
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background-color: white;
+    min-width: 150px; 
+}
+
+.search-modify .filter-btn {
+    padding: 12px 20px;
+    margin: 10px;
+    margin-left: 50px;
+    background-color: #b5651d;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+
+.search-modify .filter-btn:hover {
+    background-color: #944a17;
+}
 
 
 
@@ -118,6 +133,15 @@
 
 
 
+
+
+/* Search Results Layout */
+.search-results-page {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 /* Search Results Layout */
 .search-results-page {
