@@ -1,13 +1,17 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify, session
 from models import db
 from models import Property
 import json
 from property_filters import filter_price, clean_price, filter_bedrooms, filter_location
 
+
+
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flatfinder.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
+app.secret_key = 'very_secure_key'
 
 
 # Home page 
@@ -66,7 +70,8 @@ def property_detail(property_id):
 
 @app.route('/profile')
 def profile():
-    return "<h1>Profile Page</h1>"
+   return render_template('profile.html')
+
 
 @app.route('/lister')
 def lister():
