@@ -1,6 +1,6 @@
-from flask import Flask, render_template, request, jsonify, session
+from flask import Flask, render_template, request, jsonify, session, redirect, flash, url_for
 from models import db
-from models import Property
+from models import Property, User
 import json
 from property_filters import filter_price, clean_price, filter_bedrooms, filter_location
 
@@ -70,7 +70,33 @@ def property_detail(property_id):
 
 @app.route('/profile')
 def profile():
-   return render_template('profile.html')
+    if 'logged_in' not in session or not session['logged_in']:
+        return render_template('profile.html', logged_in=False)
+    else:
+        # Assuming session['user_id'] holds the ID of the logged-in user
+        user = User.query.get(session['user_id'])
+        if user:
+            return render_template('profile.html', logged_in=True, user=user)
+        else:
+            # Handle case where user is not found
+            flash('User not found')
+            return redirect(url_for('logout'))
+
+
+
+@app.route('/login', methods=['POST'])
+def login():
+    email = request.form['email']
+    password = request.form['password']
+    # This is a simplistic check; replace with actual authentication in production
+    user = User.query.filter_by(email=email, password=password).first()
+    if user:
+        session['logged_in'] = True
+        session['user_id'] = user.id
+        return redirect(url_for('profile'))
+    else:
+        flash('Invalid credentials')
+        return redirect(url_for('profile'))
 
 
 @app.route('/lister')
