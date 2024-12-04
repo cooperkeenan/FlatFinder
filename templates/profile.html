@@ -23,18 +23,25 @@
     </header>
 
 
+    {% if not logged_in %}
     <!-- Login Modal -->
-    <div id="loginModal" style="display:none; position:fixed; z-index:1; left:0; top:0; width:100%; height:100%; overflow:auto; background-color: rgba(0,0,0,0.4)">
-        <div style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width:600px;">
-            <span onclick="document.getElementById('loginModal').style.display='none'" style="float:right; font-size:28px; font-weight:bold; cursor:pointer;">&times;</span>
-            <p>You must log in to view this page.</p>
-            <button onclick="location.href='/login'">Log In</button>
-            <button onclick="location.href='/register'">Register</button>
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <form id="loginForm" action="/login" method="POST">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Login</button>
+            </form>
         </div>
     </div>
-    
-
-
+    <script>
+        document.getElementById('loginModal').style.display = 'block';
+    </script>
+   
+    {% endif %}
 
 
     <!-- Profile Tabs -->
