@@ -26,12 +26,22 @@ class Property(db.Model):
     number_floorplans = db.Column(db.Integer)
 
 
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(50))
+    last_name = db.Column(db.String(50))
+    phone = db.Column(db.String(50))
+    email = db.Column(db.String(100))
+    password = db.Column(db.String(100))  
+
+
 class Lister(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     companyName = db.Column(db.String(50))
     phone = db.Column(db.String(50))
     email = db.Column(db.String(100))
-    password = db.Column(db.String(100))  # Assuming password hashing handled elsewhere
+    password = db.Column(db.String(100))  
+    
 
 class Checklist(db.Model):
     id = db.Column(db.Integer, primary_key=True)

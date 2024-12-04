@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="/">Flat Finder</a></div>
+            <ul class="nav-links">
+                <li><a href="/for-you">For You</a></li>
+                <li><a href="/search">Search</a></li>
+                <li><a href="/viewings">Viewings</a></li>
+                <li><a href="/profile" >Profile</a></li>
+                <li><a href="/lister">Lister Portal</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- Login Modal -->
+    <div id="loginModal" style="display:none; position:fixed; z-index:1; left:0; top:0; width:100%; height:100%; overflow:auto; background-color: rgba(0,0,0,0.4)">
+        <div style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width:600px;">
+            <span onclick="document.getElementById('loginModal').style.display='none'" style="float:right; font-size:28px; font-weight:bold; cursor:pointer;">&times;</span>
+            <p>You must log in to view this page.</p>
+            <button onclick="location.href='/login'">Log In</button>
+            <button onclick="location.href='/register'">Register</button>
+        </div>
+    </div>
+    
+
+
+
+
+    <!-- Profile Tabs -->
+    <div class="profile-tabs">
+        <button class="tab-button" onclick="openTab(event, 'SavedProperties')">Saved Properties</button>
+        <button class="tab-button" onclick="openTab(event, 'Viewings')">Viewings</button>
+        <button class="tab-button" onclick="openTab(event, 'AccountSettings')">Account Settings</button>
+    </div>
+
+    <!-- Saved Properties -->
+    <div id="SavedProperties" class="tab-content">
+        <h2>Saved Properties</h2>
+        <p>Your saved properties will appear here.</p>
+    </div>
+
+    <!-- Viewings -->
+    <div id="Viewings" class="tab-content">
+        <h2>Viewings</h2>
+        <p>Your scheduled viewings will appear here.</p>
+    </div>
+
+    <!-- Account Settings -->
+    <div id="AccountSettings" class="tab-content">
+        <!-- Content for Account Settings -->
+        <h2 class="settings-header">Account Access</h2>
+        <div class="account-settings">
+            <div class="setting-group">
+                <h3>Name</h3>
+                <p>Change first name or last name</p>
+                <button class="change-btn">Change</button>
+            </div>
+            <div class="setting-group">
+                <h3>Email Addresses</h3>
+                <p>Add or remove email addresses on your account</p>
+                <button class="change-btn">Change</button>
+            </div>
+            <div class="setting-group">
+                <h3>Phone Numbers</h3>
+                <p>Add a phone number in case you have trouble signing in</p>
+                <button class="change-btn">Change</button>
+            </div>
+            <div class="setting-group">
+                <h3>Change Password</h3>
+                <p>Choose a unique password to protect your account</p>
+                <button class="change-btn">Change</button>
+            </div>
+    
+        </div>
+    </div>
+
+    <!-- Include your JavaScript at the end of the body -->
+    <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+</body>
+</html>
