@@ -70,33 +70,62 @@ def property_detail(property_id):
 
 @app.route('/profile')
 def profile():
-    if 'logged_in' not in session or not session['logged_in']:
+    if 'user_id' not in session:  
         return render_template('profile.html', logged_in=False)
     else:
-        # Assuming session['user_id'] holds the ID of the logged-in user
         user = User.query.get(session['user_id'])
         if user:
             return render_template('profile.html', logged_in=True, user=user)
         else:
-            # Handle case where user is not found
-            flash('User not found')
-            return redirect(url_for('logout'))
+            return redirect(url_for('login'))  
 
 
-
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+        # This is a simplistic check; replace with actual authentication in production
+        user = User.query.filter_by(email=email, password=password).first()
+        if user:
+            session['user_id'] = user.id
+            session['logged_in'] = True
+            return redirect(url_for('profile'))
+        else:
+            flash('Invalid credentials')
+            return redirect(url_for('login'))
+    else:
+        # Render the login form page if it's a GET request
+        return render_template('profile.html')
+
+
+
+@app.route('/register', methods=['POST'])
+def register():
+    # Retrieve form data
+    first_name = request.form['first_name']
+    last_name = request.form['last_name']
     email = request.form['email']
     password = request.form['password']
-    # This is a simplistic check; replace with actual authentication in production
-    user = User.query.filter_by(email=email, password=password).first()
-    if user:
-        session['logged_in'] = True
-        session['user_id'] = user.id
-        return redirect(url_for('profile'))
-    else:
-        flash('Invalid credentials')
-        return redirect(url_for('profile'))
+    phone = request.form['phone']
+
+    # Create a new user instance
+    new_user = User(
+        first_name=first_name,
+        last_name=last_name,
+        email=email,
+        password=password,
+        phone=phone
+    )
+
+    # Add the new user to the database
+    db.session.add(new_user)
+    db.session.commit()
+
+    # Optional: Log the user in directly or send them to the login page
+    flash('Registration successful. Please log in.')
+    return redirect(url_for('login'))
+
 
 
 @app.route('/lister')

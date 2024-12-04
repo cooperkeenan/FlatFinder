@@ -94,38 +94,102 @@
 
 
 
-/* MODAL */
 
+
+
+
+/* MODAL */
 .modal {
-    display: none;
+    display: none; 
     position: fixed;
-    z-index: 1;
+    z-index: 1000; 
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4); 
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 30%;
+    background-color: #fff;
+    margin: 10% auto; /* Centering the modal */
+    padding: 40px;
+    border: none;
+    width: 30%; /* Match the login screen width */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    max-width: 350px;
 }
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+.form-content {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
 }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
+.form-content label {
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.form-content input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-content button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
+}
+
+.form-content button:hover {
+    background-color: #45a049;
+}
+
+
+
+
+/* Form Styling */
+#loginForm {
+    display: flex;
+    flex-direction: column; /* Stack form elements vertically */
+    align-items: left; /* Center align the form elements */
+}
+
+#loginForm label {
+    margin-bottom: 5px; /* Space between label and input */
+    font-size: 16px; /* Adequate font size for readability */
+}
+
+#loginForm input {
+    width: 100%; /* Full width of the form */
+    padding: 10px;
+    margin-bottom: 20px; /* Space between form elements */
+    border: 1px solid #ccc; /* Subtle border for the inputs */
+    border-radius: 4px; /
+}
+
+#loginForm button {
+    width: 100%;
+    padding: 10px;
+    background-color: #b5651d; /* Blue background for the button */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners for the button */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+#loginForm button:hover {
+    background-color: #944a17; /* Darker blue on hover */
 }
