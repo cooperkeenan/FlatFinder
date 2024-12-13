@@ -1,6 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
 
 db = SQLAlchemy()
+bcrypt = Bcrypt()
 
 class Property(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -28,11 +30,22 @@ class Property(db.Model):
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(50))
-    last_name = db.Column(db.String(50))
-    phone = db.Column(db.String(50))
-    email = db.Column(db.String(100))
-    password = db.Column(db.String(100))  
+    first_name = db.Column(db.String(150), nullable=False)
+    last_name  = db.Column(db.String(150), nullable=False)
+    email      = db.Column(db.String(150), unique=True, nullable=False)
+    password_hash = db.Column(db.String(128), nullable=False)  # Hashed password
+    phone      = db.Column(db.String(20), nullable=True)
+    
+    @property
+    def password(self):
+        raise AttributeError('Password not readable')
+    
+    @password.setter
+    def password(self, password):
+        self.password_hash = bcrypt.generate_password_hash(password).decode('utf-8')
+    
+    def verify_password(self, password):
+        return bcrypt.check_password_hash(self.password_hash, password)
 
 
 

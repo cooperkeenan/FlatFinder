@@ -3,7 +3,8 @@ from models import db
 from models import Property, User
 import json
 from property_filters import filter_price, clean_price, filter_bedrooms, filter_location
-
+from flask_bcrypt import Bcrypt
+from flask_migrate import Migrate 
 
 
 
@@ -11,6 +12,8 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flatfinder.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
+bcrypt = Bcrypt(app)  # Initialize Bcrypt
+migrate = Migrate(app, db)  # Initialize Flask-Migrate if applicable
 app.secret_key = 'very_secure_key'
 
 
@@ -93,9 +96,11 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        # This is a simplistic check; replace with actual authentication in production
-        user = User.query.filter_by(email=email, password=password).first()
-        if user:
+        
+        # Fetch the user by email
+        user = User.query.filter_by(email=email).first()
+        
+        if user and user.verify_password(password):
             session['user_id'] = user.id
             session['logged_in'] = True
             return redirect(url_for('profile'))
@@ -108,6 +113,7 @@ def login():
 
 
 
+
 @app.route('/register', methods=['POST'])
 def register():
     # Retrieve form data
@@ -117,12 +123,17 @@ def register():
     password = request.form['password']
     phone = request.form['phone']
 
-    # Create a new user instance
+    # Check if email already exists
+    if User.query.filter_by(email=email).first():
+        flash('Email already registered.')
+        return redirect(url_for('login'))
+
+    # Create a new user instance with hashed password
     new_user = User(
         first_name=first_name,
         last_name=last_name,
         email=email,
-        password=password,
+        password=password,  # Password setter handles hashing
         phone=phone
     )
 
@@ -130,9 +141,9 @@ def register():
     db.session.add(new_user)
     db.session.commit()
 
-    # Optional: Log the user in directly or send them to the login page
     flash('Registration successful. Please log in.')
     return redirect(url_for('login'))
+
 
 @app.route('/update_name', methods=['POST'])
 def update_name():
@@ -148,13 +159,29 @@ def update_name():
 
 @app.route('/update_email', methods=['POST'])
 def update_email():
+    if 'user_id' not in session:
+        flash('You need to log in to update your email.')
+        return redirect(url_for('login'))
+    
     email = request.form['email']
-    tab = request.form.get('tab', 'AccountSettings')  # Ensure the tab is passed
+    tab = request.form.get('tab', 'AccountSettings')
+    
     user = User.query.get(session['user_id'])
+    if not user:
+        flash('User not found.')
+        return redirect(url_for('login'))
+    
+    # Check if the new email is already in use
+    if User.query.filter_by(email=email).first():
+        flash('Email is already in use.')
+        return redirect(url_for('profile', tab=tab))
+    
     user.email = email
     db.session.commit()
+    
     flash('Email updated successfully!')
     return redirect(url_for('profile', tab=tab))
+
 
 @app.route('/update_phone', methods=['POST'])
 def update_phone():
@@ -168,13 +195,28 @@ def update_phone():
 
 @app.route('/update_password', methods=['POST'])
 def update_password():
-    password = request.form['password']
-    tab = request.form.get('tab', 'AccountSettings')  # Ensure the tab is passed
+    if 'user_id' not in session:
+        flash('You need to log in to update your password.')
+        return redirect(url_for('login'))
+    
     user = User.query.get(session['user_id'])
-    user.password = password  # Insecure: Replace with a hashing library like bcrypt in production
+    if not user:
+        flash('User not found.')
+        return redirect(url_for('login'))
+    
+    new_password = request.form['password']
+    tab = request.form.get('tab', 'AccountSettings')
+    
+    if not new_password:
+        flash('Password cannot be empty.')
+        return redirect(url_for('profile', tab=tab))
+    
+    user.password = new_password  # Password setter handles hashing
     db.session.commit()
+    
     flash('Password updated successfully!')
     return redirect(url_for('profile', tab=tab))
+
 
 
 
