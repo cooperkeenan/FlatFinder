@@ -29,6 +29,19 @@
     <!-- Login Modal -->
     <div id="loginModal" class="modal" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
+
+            <!-- Flash Messages Inside Modal -->
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <ul class="flashes">
+                  {% for message in messages %}
+                    <li>{{ message }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            {% endwith %}
+
+
             <!-- Toggleable forms -->
             <span class="close-button" onclick="closeModal()">&times;</span>
             <form id="loginForm" action="/login" method="POST" class="form-content" style="display: block;">

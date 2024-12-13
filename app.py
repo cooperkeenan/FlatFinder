@@ -106,7 +106,7 @@ def login():
             session['logged_in'] = True
             return redirect(url_for('profile'))
         else:
-            flash('Invalid credentials')
+            flash('Invalid email or password.')  # Updated message
             return redirect(url_for('login'))
     else:
         # Render the login form page if it's a GET request

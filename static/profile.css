@@ -212,3 +212,23 @@
 }
 
 
+
+/* Style for Flash Messages */
+.flashes {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 15px; /* Space below the messages */
+}
+
+.flashes li {
+    background-color: #f8d7da; /* Light red background */
+    color: #721c24; /* Dark red text */
+    border-left: 5px solid #f5c6cb; /* Red border for emphasis */
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+
+
