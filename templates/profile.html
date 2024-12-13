@@ -114,45 +114,62 @@
     <!-- Modals -->
     <div id="nameModal" class="modal" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
+            {% if logged_in %}
             <form action="/update_name" method="POST" class="form-content">
                 <label for="first-name">First Name:</label>
-                <input type="text" id="first-name" name="first_name" required>
+                <input type="text" id="first-name" name="first_name" placeholder="{{ user.first_name }}" required>
                 <label for="last-name">Last Name:</label>
-                <input type="text" id="last-name" name="last_name" required>
+                <input type="text" id="last-name" name="last_name" placeholder="{{ user.last_name }}" required>
                 <button type="submit">Save Changes</button>
             </form>
+            {% else %}
+            <p>You need to log in to update your name.</p>
+            {% endif %}
         </div>
     </div>
-
+    
     <div id="emailModal" class="modal" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
+            {% if logged_in %}
             <form action="/update_email" method="POST" class="form-content">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" placeholder="{{ user.email }}" required>
                 <button type="submit">Save Changes</button>
             </form>
+            {% else %}
+            <p>You need to log in to update your email.</p>
+            {% endif %}
         </div>
     </div>
-
+    
     <div id="phoneModal" class="modal" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
+            {% if logged_in %}
             <form action="/update_phone" method="POST" class="form-content">
                 <label for="phone">Phone Number:</label>
-                <input type="text" id="phone" name="phone" required>
+                <input type="text" id="phone" name="phone" placeholder="{{ user.phone }}" required>
                 <button type="submit">Save Changes</button>
             </form>
+            {% else %}
+            <p>You need to log in to update your phone number.</p>
+            {% endif %}
         </div>
     </div>
-
+    
     <div id="passwordModal" class="modal" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
+            {% if logged_in %}
             <form action="/update_password" method="POST" class="form-content">
                 <label for="password">New Password:</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" placeholder="Enter your new password" required>
                 <button type="submit">Save Changes</button>
             </form>
+            {% else %}
+            <p>You need to log in to update your password.</p>
+            {% endif %}
         </div>
     </div>
+    
 
 
     <!-- Include your JavaScript at the end of the body -->

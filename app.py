@@ -70,14 +70,20 @@ def property_detail(property_id):
 
 @app.route('/profile')
 def profile():
-    if 'user_id' not in session:  
-        return render_template('profile.html', logged_in=False)
+    if 'user_id' not in session:
+        # User is not logged in
+        return render_template('profile.html', logged_in=False, user=None)
     else:
+        # User is logged in
         user = User.query.get(session['user_id'])
         if user:
             return render_template('profile.html', logged_in=True, user=user)
         else:
-            return redirect(url_for('login'))  
+            # If user_id is invalid, log them out and redirect
+            session.pop('user_id', None)
+            flash('Session expired. Please log in again.')
+            return redirect(url_for('login'))
+
 
 
 @app.route('/login', methods=['GET', 'POST'])
