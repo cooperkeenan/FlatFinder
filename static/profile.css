@@ -93,6 +93,22 @@
 }
 
 
+.logout-btn {
+    background-color: #ff4d4d; /* Red background for emphasis */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px; /* Space above the button */
+}
+
+.logout-btn:hover {
+    background-color: #e60000; /* Darker red on hover */
+}
+
+
 
 
 
@@ -194,3 +210,5 @@
 #loginForm button:hover {
     background-color: #944a17; /* Darker blue on hover */
 }
+
+

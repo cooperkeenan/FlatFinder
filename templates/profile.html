@@ -111,6 +111,11 @@
                 <p>Choose a unique password to protect your account</p>
                 <button class="change-btn" onclick="openModal('passwordModal')">Change</button>
             </div>
+            <div class="setting-group">
+                <form action="{{ url_for('logout') }}" method="POST">
+                    <button type="submit" class="logout-btn">Log Out</button>
+                </form>
+            </div>
         </div>
     </div>
 
