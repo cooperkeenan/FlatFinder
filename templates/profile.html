@@ -1,0 +1,206 @@
+<!-- profile.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Existing head content -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="/">Flat Finder</a></div>
+            <ul class="nav-links">
+                <li><a href="/for-you">For You</a></li>
+                <li><a href="/search">Search</a></li>
+                <li><a href="/viewings">Viewings</a></li>
+                <li><a href="/profile" >Profile</a></li>
+                <li><a href="/lister">Lister Portal</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    {% if not logged_in %}
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+
+            <!-- Flash Messages Inside Modal -->
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <ul class="flashes">
+                  {% for message in messages %}
+                    <li>{{ message }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            {% endwith %}
+
+
+            <!-- Toggleable forms -->
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <form id="loginForm" action="/login" method="POST" class="form-content" style="display: block;">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Log In</button>
+                <button type="button" onclick="showRegisterForm()">Create Account</button>
+            </form>
+
+            <!-- Registration Form -->
+            <form id="registerForm" action="/register" method="POST" class="form-content" style="display: none;">
+                <label for="reg-first-name">First Name:</label>
+                <input type="text" id="reg-first-name" name="first_name" required>
+
+                <label for="reg-last-name">Last Name:</label>
+                <input type="text" id="reg-last-name" name="last_name" required>
+
+                <label for="reg-email">Email:</label>
+                <input type="email" id="reg-email" name="email" required>
+
+                <label for="reg-password">Password:</label>
+                <input type="password" id="reg-password" name="password" required>
+
+                <label for="reg-phone">Phone Number:</label>
+                <input type="text" id="reg-phone" name="phone" required>
+
+                <button type="submit">Register</button>
+                <button type="button" onclick="showLoginForm()">Back to Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginModal').style.display = 'block';
+    </script>
+    {% endif %}
+
+    <!-- Profile Tabs -->
+    <div class="profile-tabs">
+        <button class="tab-button" onclick="openTab(event, 'SavedProperties')">Saved Properties</button>
+        <button class="tab-button" onclick="openTab(event, 'Viewings')">Viewings</button>
+        <button class="tab-button" onclick="openTab(event, 'AccountSettings')">Account Settings</button>
+    </div>
+
+    <!-- Saved Properties -->
+    <div id="SavedProperties" class="tab-content">
+        <h2>Saved Properties</h2>
+        <p>Your saved properties will appear here.</p>
+    </div>
+
+    <!-- Viewings -->
+    <div id="Viewings" class="tab-content">
+        <h2>Viewings</h2>
+        <p>Your scheduled viewings will appear here.</p>
+    </div>
+
+    <!-- Account Settings -->
+    <div id="AccountSettings" class="tab-content">
+        <h2 class="settings-header">Account Access</h2>
+        <div class="account-settings">
+            <div class="setting-group">
+                <h3>Name</h3>
+                <p>Change first name or last name</p>
+                <button class="change-btn" onclick="openModal('nameModal')">Change</button>
+            </div>
+            <div class="setting-group">
+                <h3>Email Addresses</h3>
+                <p>Add or remove email addresses on your account</p>
+                <button class="change-btn" onclick="openModal('emailModal')">Change</button>
+            </div>
+            <div class="setting-group">
+                <h3>Phone Numbers</h3>
+                <p>Add a phone number in case you have trouble signing in</p>
+                <button class="change-btn" onclick="openModal('phoneModal')">Change</button>
+            </div>
+            <div class="setting-group">
+                <h3>Change Password</h3>
+                <p>Choose a unique password to protect your account</p>
+                <button class="change-btn" onclick="openModal('passwordModal')">Change</button>
+            </div>
+            <div class="setting-group">
+                <form action="{{ url_for('logout') }}" method="POST">
+                    <button type="submit" class="logout-btn">Log Out</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="nameModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            {% if logged_in %}
+            <form action="/update_name" method="POST" class="form-content">
+                <input type="hidden" name="tab" value="AccountSettings">
+                <label for="first-name">First Name:</label>
+                <input type="text" id="first-name" name="first_name" placeholder="{{ user.first_name }}" required>
+                <label for="last-name">Last Name:</label>
+                <input type="text" id="last-name" name="last_name" placeholder="{{ user.last_name }}" required>
+                <button type="submit">Save Changes</button>
+            </form>
+            {% else %}
+            <p>You need to log in to update your name.</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div id="emailModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            {% if logged_in %}
+            <form action="/update_email" method="POST" class="form-content">
+                <input type="hidden" name="tab" value="AccountSettings">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="{{ user.email }}" required>
+                <button type="submit">Save Changes</button>
+            </form>
+            {% else %}
+            <p>You need to log in to update your email.</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div id="phoneModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            {% if logged_in %}
+            <form action="/update_phone" method="POST" class="form-content">
+                <input type="hidden" name="tab" value="AccountSettings">
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone" placeholder="{{ user.phone }}" required>
+                <button type="submit">Save Changes</button>
+            </form>
+            {% else %}
+            <p>You need to log in to update your phone number.</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div id="passwordModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            {% if logged_in %}
+            <form action="/update_password" method="POST" class="form-content">
+                <input type="hidden" name="tab" value="AccountSettings">
+                <label for="password">New Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your new password" required>
+                <button type="submit">Save Changes</button>
+            </form>
+            {% else %}
+            <p>You need to log in to update your password.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Pass the active_tab to JavaScript -->
+    <script>
+        var activeTab = "{{ active_tab }}" || "SavedProperties";
+    </script>
+
+    <!-- Include your JavaScript at the end of the body -->
+    <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+</body>
+</html>

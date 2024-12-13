@@ -1,10 +1,12 @@
 import requests
 from datetime import datetime
 from sqlalchemy.exc import IntegrityError
-from models import db, Property
+from models import db, Property, User
 from app import app 
 import json
 import re
+
+
 
 # Load data from a JSON file
 def load_json(file_path):
@@ -113,6 +115,19 @@ def insert_data():
                 print(f"Inserted new property: {property_id}")
     
         try:
+  
+            new_user = User(
+            id=101,
+            first_name='Admin',
+            last_name='User',
+            phone='101',
+            email='admin@example.com',
+            password='password'
+            
+        )
+            db.session.add(new_user)
+
+
             db.session.commit()
         except IntegrityError as e:
             db.session.rollback()
