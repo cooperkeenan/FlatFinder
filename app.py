@@ -114,6 +114,15 @@ def login():
 
 
 
+# Logout Route
+@app.route('/logout', methods=['POST'])
+def logout():
+    session.pop('user_id', None)
+    session.pop('logged_in', None)
+    flash('You have been logged out successfully.')
+    return redirect(url_for('home'))
+
+
 
 @app.route('/register', methods=['POST'])
 def register():
