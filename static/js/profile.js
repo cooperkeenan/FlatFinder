@@ -75,6 +75,13 @@ function closeModal(event) {
         const target = event.target;
         if (target.classList.contains('modal')) {
             target.style.display = 'none';
+
+            // **New Code Starts Here**
+            // If the closed modal is the login modal, redirect to Home page
+            if (target.id === 'loginModal') {
+                window.location.href = '/'; // Redirect to Home page
+            }
+            // **New Code Ends Here**
         }
     }
 }
