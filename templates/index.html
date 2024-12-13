@@ -22,25 +22,37 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-image">
-            <img src="{{ url_for('static', filename='images/HomePage_Edinburgh.jpg') }}">
+    <!-- home Section -->
+    <section class="home">
+        <div class="home-image">
+            <!-- Updated image filename from HomePage_Edinburgh.jpg to home_image.jpg -->
+            <img src="{{ url_for('static', filename='images/HomePage_Edinburgh.jpg') }}" alt="Beautiful Flat in Edinburgh">
         </div>
         <div class="search-bar">
             <form action="{{ url_for('search_results') }}" method="get">
                 <label for="search">Search Properties to Rent</label>
-                <input type="text" name="location" id="search" placeholder="Enter a location or postcode">
+                <input type="text" name="location" id="search" placeholder="Enter a location or postcode" required>
                 <button type="submit">Go</button>
             </form>
         </div>
     </section>
 
+
+
     <!-- About Section -->
     <section class="about">
-        <div class="about-box">About</div>
-        <div class="about-box">About</div>
-        <div class="about-box">About</div>
+        <div class="about-box">
+            <h3 class="custom-gap">Personalized Recommendations <span>Listings</span></h3>
+            <p>Our smart algorithm learns your preferences to showcase flats that perfectly match your unique criteria, saving you time and effort.</p>
+        </div>
+        <div class="about-box">
+            <h3 class="custom-gap">Automated Viewing Management <span>Listings</span></h3>
+            <p>Simplify your property viewings with our automated system that handles all communications, making scheduling effortless.</p>
+        </div>
+        <div class="about-box">
+            <h3 class="custom-gap">High Quality <span>Listings</span></h3>
+            <p>We ensure every listing includes comprehensive details and high-resolution images, providing transparency and reliability.</p>
+        </div>
     </section>
 </body>
 </html>
