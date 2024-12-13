@@ -13,8 +13,8 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flatfinder.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
-bcrypt = Bcrypt(app)  # Initialize Bcrypt
-migrate = Migrate(app, db)  # Initialize Flask-Migrate if applicable
+bcrypt = Bcrypt(app)
+migrate = Migrate(app, db)  
 app.secret_key = os.urandom(24)
 
 
@@ -59,12 +59,13 @@ def search_results():
 
 
 
-
+# Viewings Page
 @app.route('/viewings')
 def viewings():
     return render_template('viewing_manager.html')
 
 
+# View Property
 @app.route('/property/<property_id>')
 def property_detail(property_id):
     property = Property.query.get(property_id)
@@ -72,9 +73,9 @@ def property_detail(property_id):
     return render_template('view_property.html', property=property, image_urls=image_urls)
 
 
+# Profile Page
 @app.route('/profile')
 def profile():
-    # Default to 'SavedProperties' if no tab parameter is passed
     tab = request.args.get('tab', 'SavedProperties')
     
     if 'user_id' not in session:
@@ -90,8 +91,7 @@ def profile():
 
 
 
-
-
+# Login Modal
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -106,10 +106,9 @@ def login():
             session['logged_in'] = True
             return redirect(url_for('profile'))
         else:
-            flash('Invalid email or password.')  # Updated message
+            flash('Invalid email or password.')  
             return redirect(url_for('login'))
     else:
-        # Render the login form page if it's a GET request
         return render_template('profile.html')
 
 
@@ -123,7 +122,7 @@ def logout():
     return redirect(url_for('home'))
 
 
-
+# Register Modal
 @app.route('/register', methods=['POST'])
 def register():
     # Retrieve form data
@@ -138,16 +137,15 @@ def register():
         flash('Email already registered.')
         return redirect(url_for('login'))
 
-    # Create a new user instance with hashed password
+
     new_user = User(
         first_name=first_name,
         last_name=last_name,
         email=email,
-        password=password,  # Password setter handles hashing
+        password=password,  # Password hashing
         phone=phone
     )
 
-    # Add the new user to the database
     db.session.add(new_user)
     db.session.commit()
 
@@ -155,6 +153,7 @@ def register():
     return redirect(url_for('login'))
 
 
+# Update Name
 @app.route('/update_name', methods=['POST'])
 def update_name():
     first_name = request.form['first_name']
@@ -167,6 +166,8 @@ def update_name():
     flash('Name updated successfully!')
     return redirect(url_for('profile', tab=tab))
 
+
+#Update Email
 @app.route('/update_email', methods=['POST'])
 def update_email():
     if 'user_id' not in session:
@@ -193,16 +194,19 @@ def update_email():
     return redirect(url_for('profile', tab=tab))
 
 
+#Update Phone
 @app.route('/update_phone', methods=['POST'])
 def update_phone():
     phone = request.form['phone']
-    tab = request.form.get('tab', 'AccountSettings')  # Ensure the tab is passed
+    tab = request.form.get('tab', 'AccountSettings')  
     user = User.query.get(session['user_id'])
     user.phone = phone
     db.session.commit()
     flash('Phone number updated successfully!')
     return redirect(url_for('profile', tab=tab))
 
+
+#Update Password
 @app.route('/update_password', methods=['POST'])
 def update_password():
     if 'user_id' not in session:
@@ -221,7 +225,7 @@ def update_password():
         flash('Password cannot be empty.')
         return redirect(url_for('profile', tab=tab))
     
-    user.password = new_password  # Password setter handles hashing
+    user.password = new_password 
     db.session.commit()
     
     flash('Password updated successfully!')
@@ -244,20 +248,17 @@ def contact():
 
 @app.cli.command("init_db")
 def init_db():
-    """Create the database and tables."""
     db.create_all()
     print("Database initialized.")
 
 @app.cli.command("drop_db")
 def drop_db():
-    """Drop all tables in the database."""
     db.drop_all()
     print("Database cleared.")
 
 
 @app.template_filter('formatdate')
 def format_date(value, format='%Y-%m-%d'):
-    """Custom Jinja2 filter to format datetime objects."""
     if value is None:
         return ""
     return value.strftime(format)

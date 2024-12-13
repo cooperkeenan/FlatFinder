@@ -51,17 +51,17 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 48%; /* Adjusted to fill remaining space with a gap */
+    width: 48%; 
 }
 
 .small-image {
     background-color: #ddd;
-    height: 145px; /* Adjusted for better fit */
+    height: 145px; 
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 5px;
-    flex-grow: 1; /* Makes each small image take equal height */
+    flex-grow: 1; 
 }
 
 
@@ -128,37 +128,37 @@
 
 .property-details {
     display: flex;
-    justify-content: space-between; /* Ensures space is distributed between columns */
+    justify-content: space-between; 
     width: 50%;
-    padding: 0; /* Remove padding inside the container */
+    padding: 0; 
 }
 
 .details-column {
-    flex: 1; /* Each column takes equal width */
-    padding: 10px 5px; /* Vertical padding of 10px, horizontal padding of 5px */
+    flex: 1; 
+    padding: 10px 5px; 
 }
 
 .detail-item {
     display: block;
-    margin-bottom: 10px; /* Space between items */
+    margin-bottom: 10px;
 }
 
 
 .details-row.lower {
     display: flex;
-    justify-content: space-around; /* Distribute space evenly */
-    align-items: center; /* Center items vertically */
-    margin-top: 20px; /* Space above the row */
+    justify-content: space-around; 
+    align-items: center; 
+    margin-top: 20px;
 }
 
 .detail-item {
     display: flex;
-    align-items: center; /* Align the icon and text */
-    font-size: 0.9rem; /* Adjust text size */
+    align-items: center;
+    font-size: 0.9rem; 
 }
 
 .detail-item i {
-    margin-right: 5px; /* Space between icon and text */
-    color: #666; /* Icon color, choose as per your design */
+    margin-right: 5px; 
+    color: #666; 
 }
 

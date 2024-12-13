@@ -76,23 +76,14 @@ function closeModal(event) {
         if (target.classList.contains('modal')) {
             target.style.display = 'none';
 
-            // **New Code Starts Here**
-            // If the closed modal is the login modal, redirect to Home page
             if (target.id === 'loginModal') {
-                window.location.href = '/'; // Redirect to Home page
+                window.location.href = '/'; 
             }
-            // **New Code Ends Here**
+
         }
     }
 }
 
-// Optional: Close modal on pressing Escape key
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        const modals = document.querySelectorAll('.modal');
-        modals.forEach(modal => modal.style.display = 'none');
-    }
-});
 
 // Function to handle tab switching
 function openTab(evt, tabName) {
