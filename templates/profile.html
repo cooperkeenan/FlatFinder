@@ -1,6 +1,9 @@
+<!-- profile.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Existing head content -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Page</title>
@@ -22,12 +25,12 @@
         </nav>
     </header>
 
-
     {% if not logged_in %}
     <!-- Login Modal -->
     <div id="loginModal" class="modal" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
             <!-- Toggleable forms -->
+            <span class="close-button" onclick="closeModal()">&times;</span>
             <form id="loginForm" action="/login" method="POST" class="form-content" style="display: block;">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
@@ -61,9 +64,7 @@
     <script>
         document.getElementById('loginModal').style.display = 'block';
     </script>
- 
     {% endif %}
-
 
     <!-- Profile Tabs -->
     <div class="profile-tabs">
@@ -116,6 +117,7 @@
         <div class="modal-content" onclick="event.stopPropagation()">
             {% if logged_in %}
             <form action="/update_name" method="POST" class="form-content">
+                <input type="hidden" name="tab" value="AccountSettings">
                 <label for="first-name">First Name:</label>
                 <input type="text" id="first-name" name="first_name" placeholder="{{ user.first_name }}" required>
                 <label for="last-name">Last Name:</label>
@@ -132,6 +134,7 @@
         <div class="modal-content" onclick="event.stopPropagation()">
             {% if logged_in %}
             <form action="/update_email" method="POST" class="form-content">
+                <input type="hidden" name="tab" value="AccountSettings">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" placeholder="{{ user.email }}" required>
                 <button type="submit">Save Changes</button>
@@ -146,6 +149,7 @@
         <div class="modal-content" onclick="event.stopPropagation()">
             {% if logged_in %}
             <form action="/update_phone" method="POST" class="form-content">
+                <input type="hidden" name="tab" value="AccountSettings">
                 <label for="phone">Phone Number:</label>
                 <input type="text" id="phone" name="phone" placeholder="{{ user.phone }}" required>
                 <button type="submit">Save Changes</button>
@@ -160,6 +164,7 @@
         <div class="modal-content" onclick="event.stopPropagation()">
             {% if logged_in %}
             <form action="/update_password" method="POST" class="form-content">
+                <input type="hidden" name="tab" value="AccountSettings">
                 <label for="password">New Password:</label>
                 <input type="password" id="password" name="password" placeholder="Enter your new password" required>
                 <button type="submit">Save Changes</button>
@@ -169,8 +174,11 @@
             {% endif %}
         </div>
     </div>
-    
 
+    <!-- Pass the active_tab to JavaScript -->
+    <script>
+        var activeTab = "{{ active_tab }}" || "SavedProperties";
+    </script>
 
     <!-- Include your JavaScript at the end of the body -->
     <script src="{{ url_for('static', filename='js/profile.js') }}"></script>

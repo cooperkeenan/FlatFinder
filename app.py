@@ -70,19 +70,21 @@ def property_detail(property_id):
 
 @app.route('/profile')
 def profile():
+    # Default to 'SavedProperties' if no tab parameter is passed
+    tab = request.args.get('tab', 'SavedProperties')
+    
     if 'user_id' not in session:
-        # User is not logged in
-        return render_template('profile.html', logged_in=False, user=None)
+        return render_template('profile.html', logged_in=False, user=None, active_tab=tab)
     else:
-        # User is logged in
         user = User.query.get(session['user_id'])
         if user:
-            return render_template('profile.html', logged_in=True, user=user)
+            return render_template('profile.html', logged_in=True, user=user, active_tab=tab)
         else:
-            # If user_id is invalid, log them out and redirect
             session.pop('user_id', None)
             flash('Session expired. Please log in again.')
             return redirect(url_for('login'))
+
+
 
 
 
@@ -136,39 +138,44 @@ def register():
 def update_name():
     first_name = request.form['first_name']
     last_name = request.form['last_name']
+    tab = request.form.get('tab', 'SavedProperties') 
     user = User.query.get(session['user_id'])
     user.first_name = first_name
     user.last_name = last_name
     db.session.commit()
     flash('Name updated successfully!')
-    return redirect(url_for('profile'))
+    return redirect(url_for('profile', tab=tab))
 
 @app.route('/update_email', methods=['POST'])
 def update_email():
     email = request.form['email']
+    tab = request.form.get('tab', 'AccountSettings')  # Ensure the tab is passed
     user = User.query.get(session['user_id'])
     user.email = email
     db.session.commit()
     flash('Email updated successfully!')
-    return redirect(url_for('profile'))
+    return redirect(url_for('profile', tab=tab))
 
 @app.route('/update_phone', methods=['POST'])
 def update_phone():
     phone = request.form['phone']
+    tab = request.form.get('tab', 'AccountSettings')  # Ensure the tab is passed
     user = User.query.get(session['user_id'])
     user.phone = phone
     db.session.commit()
     flash('Phone number updated successfully!')
-    return redirect(url_for('profile'))
+    return redirect(url_for('profile', tab=tab))
 
 @app.route('/update_password', methods=['POST'])
 def update_password():
     password = request.form['password']
+    tab = request.form.get('tab', 'AccountSettings')  # Ensure the tab is passed
     user = User.query.get(session['user_id'])
     user.password = password  # Insecure: Replace with a hashing library like bcrypt in production
     db.session.commit()
     flash('Password updated successfully!')
-    return redirect(url_for('profile'))
+    return redirect(url_for('profile', tab=tab))
+
 
 
 @app.route('/lister')
