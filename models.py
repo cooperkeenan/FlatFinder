@@ -1,3 +1,5 @@
+# models.py
+
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 
@@ -5,13 +7,14 @@ db = SQLAlchemy()
 bcrypt = Bcrypt()
 
 class Property(db.Model):
+    __tablename__ = 'property'
     id = db.Column(db.Integer, primary_key=True)
     address = db.Column(db.String(500))
     postcode = db.Column(db.String(50))
     latitude = db.Column(db.Float)  
     longitude = db.Column(db.Float)
-    lister_id = db.Column(db.Integer, db.ForeignKey('lister.id'))
-    checklist_id = db.Column(db.Integer, db.ForeignKey('checklist.id'))
+    lister_id = db.Column(db.Integer, db.ForeignKey('lister.id', name='fk_property_lister_id'))
+    checklist_id = db.Column(db.Integer, db.ForeignKey('checklist.id', name='fk_property_checklist_id'))
     bedrooms = db.Column(db.Integer)
     bathrooms = db.Column(db.Integer)
     price_pcm = db.Column(db.String(100))  
@@ -27,8 +30,8 @@ class Property(db.Model):
     flat_type = db.Column(db.String(500))
     number_floorplans = db.Column(db.Integer)
 
-
 class User(db.Model):
+    __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(150), nullable=False)
     last_name  = db.Column(db.String(150), nullable=False)
@@ -47,17 +50,16 @@ class User(db.Model):
     def verify_password(self, password):
         return bcrypt.check_password_hash(self.password_hash, password)
 
-
-
 class Lister(db.Model):
+    __tablename__ = 'lister'
     id = db.Column(db.Integer, primary_key=True)
     companyName = db.Column(db.String(50))
     phone = db.Column(db.String(50))
     email = db.Column(db.String(100))
     password = db.Column(db.String(100))  
 
-
 class Checklist(db.Model):
+    __tablename__ = 'checklist'
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Integer)
     description = db.Column(db.Text)
@@ -68,4 +70,3 @@ class Checklist(db.Model):
     deposit = db.Column(db.Integer)
     availability_date = db.Column(db.Date)
     parking = db.Column(db.Boolean)
-

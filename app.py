@@ -5,6 +5,7 @@ import json
 from property_filters import filter_price, clean_price, filter_bedrooms, filter_location
 from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate 
+import os
 
 
 
@@ -14,7 +15,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 bcrypt = Bcrypt(app)  # Initialize Bcrypt
 migrate = Migrate(app, db)  # Initialize Flask-Migrate if applicable
-app.secret_key = 'very_secure_key'
+app.secret_key = os.urandom(24)
 
 
 # Home page 

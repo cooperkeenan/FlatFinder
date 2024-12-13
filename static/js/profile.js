@@ -35,7 +35,31 @@ document.addEventListener('DOMContentLoaded', function() {
             openModal(modalId);
         });
     });
+
+    // Attach event listener to "Create Account" button
+    const createAccountBtn = document.querySelector('#loginForm button[type="button"]');
+    if (createAccountBtn) {
+        createAccountBtn.addEventListener('click', showRegisterForm);
+    }
+
+    // Optionally, attach event listener to "Back to Login" button if you have one
+    const backToLoginBtn = document.querySelector('#registerForm button[type="button"]');
+    if (backToLoginBtn) {
+        backToLoginBtn.addEventListener('click', showLoginForm);
+    }
 });
+
+// Function to show the registration form and hide the login form
+function showRegisterForm() {
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('registerForm').style.display = 'block';
+}
+
+// Function to show the login form and hide the registration form
+function showLoginForm() {
+    document.getElementById('registerForm').style.display = 'none';
+    document.getElementById('loginForm').style.display = 'block';
+}
 
 // Function to open a specific modal
 function openModal(modalId) {
