@@ -1,70 +1,58 @@
-
+// profile.js
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initially activate the first tab and display its content
-    document.getElementById("SavedProperties").style.display = "block"; // Show the Saved Properties tab content
-    document.getElementsByClassName("tab-button")[0].className += " active"; // Set the first tab button as active
+    // Initially activate the first tab and display its content if activeTab is not set
+    if (!activeTab) {
+        activeTab = "SavedProperties";
+    }
 
+    // Hide all tab content
+    const tabContents = document.querySelectorAll(".tab-content");
+    tabContents.forEach(content => content.style.display = "none");
+
+    // Remove the active class from all buttons
+    const tabButtons = document.querySelectorAll(".tab-button");
+    tabButtons.forEach(button => button.classList.remove("active"));
+
+    // Show the active tab and set the button as active
+    const activeTabContent = document.getElementById(activeTab);
+    const activeTabButton = document.querySelector(`.tab-button[onclick="openTab(event, '${activeTab}')"]`);
+
+    if (activeTabContent) activeTabContent.style.display = "block";
+    if (activeTabButton) activeTabButton.classList.add("active");
+
+    // Handle Login Modal Display
     const loginModal = document.getElementById('loginModal');
     if (loginModal) {
-        loginModal.style.display = 'block'; // Optionally display the login modal if it's meant to be shown
+        loginModal.style.display = 'block'; // Display the login modal if user is not logged in
     }
 
-    // Listen for clicks to toggle forms within the modal
-    document.getElementById('loginModal').addEventListener('click', function(event) {
-        if (event.target.classList.contains('modal')) {
-            closeModal();
-        }
+    // Attach event listeners to "Change" buttons
+    const changeButtons = document.querySelectorAll('.change-btn');
+    changeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const modalId = this.getAttribute('onclick').match(/openModal\('(.+)'\)/)[1];
+            openModal(modalId);
+        });
     });
-
-    // Prevent modal close when clicking inside modal content
-    document.querySelector('.modal-content').addEventListener('click', function(event) {
-        event.stopPropagation();
-    });
-
-    // Attach event listener for toggling forms
-    const createAccountBtn = document.querySelector('#loginForm button[type="button"]');
-    if (createAccountBtn) {
-        createAccountBtn.addEventListener('click', showRegisterForm);
-    }
 });
 
-function openTab(evt, tabName) {
-    var tabcontent = document.getElementsByClassName("tab-content");
-    var tabbuttons = document.getElementsByClassName("tab-button");
-
-    // Hide all tab content and remove 'active' class from buttons
-    Array.from(tabcontent).forEach(content => content.style.display = "none");
-    Array.from(tabbuttons).forEach(button => button.className = button.className.replace(" active", ""));
-
-    // Show the selected tab and mark the button as active
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-
-function closeModal() {
-    const modal = document.getElementById('loginModal');
-    modal.style.display = 'none';
-}
-
-function showRegisterForm() {
-    // Hide the login form and show the register form
-    document.getElementById('loginForm').style.display = 'none';
-    document.getElementById('registerForm').style.display = 'block';
-}
-
-
+// Function to open a specific modal
 function openModal(modalId) {
-    document.getElementById(modalId).style.display = 'block';
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'block';
+    }
 }
 
+// Function to close modals when clicking outside or on the close button
 function closeModal(event) {
-    const modals = document.querySelectorAll('.modal');
-    modals.forEach(modal => {
-        if (event.target === modal) {
-            modal.style.display = 'none';
+    if (event) {
+        const target = event.target;
+        if (target.classList.contains('modal')) {
+            target.style.display = 'none';
         }
-    });
+    }
 }
 
 // Optional: Close modal on pressing Escape key
@@ -74,3 +62,21 @@ document.addEventListener('keydown', function(event) {
         modals.forEach(modal => modal.style.display = 'none');
     }
 });
+
+// Function to handle tab switching
+function openTab(evt, tabName) {
+    // Hide all tab content
+    const tabContents = document.querySelectorAll(".tab-content");
+    tabContents.forEach(content => content.style.display = "none");
+
+    // Remove the active class from all buttons
+    const tabButtons = document.querySelectorAll(".tab-button");
+    tabButtons.forEach(button => button.classList.remove("active"));
+
+    // Show the selected tab and mark the button as active
+    const selectedTabContent = document.getElementById(tabName);
+    const selectedTabButton = evt.currentTarget;
+
+    if (selectedTabContent) selectedTabContent.style.display = "block";
+    selectedTabButton.classList.add("active");
+}
