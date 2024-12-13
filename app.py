@@ -126,6 +126,43 @@ def register():
     flash('Registration successful. Please log in.')
     return redirect(url_for('login'))
 
+@app.route('/update_name', methods=['POST'])
+def update_name():
+    first_name = request.form['first_name']
+    last_name = request.form['last_name']
+    user = User.query.get(session['user_id'])
+    user.first_name = first_name
+    user.last_name = last_name
+    db.session.commit()
+    flash('Name updated successfully!')
+    return redirect(url_for('profile'))
+
+@app.route('/update_email', methods=['POST'])
+def update_email():
+    email = request.form['email']
+    user = User.query.get(session['user_id'])
+    user.email = email
+    db.session.commit()
+    flash('Email updated successfully!')
+    return redirect(url_for('profile'))
+
+@app.route('/update_phone', methods=['POST'])
+def update_phone():
+    phone = request.form['phone']
+    user = User.query.get(session['user_id'])
+    user.phone = phone
+    db.session.commit()
+    flash('Phone number updated successfully!')
+    return redirect(url_for('profile'))
+
+@app.route('/update_password', methods=['POST'])
+def update_password():
+    password = request.form['password']
+    user = User.query.get(session['user_id'])
+    user.password = password  # Insecure: Replace with a hashing library like bcrypt in production
+    db.session.commit()
+    flash('Password updated successfully!')
+    return redirect(url_for('profile'))
 
 
 @app.route('/lister')

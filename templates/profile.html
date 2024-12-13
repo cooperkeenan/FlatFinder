@@ -86,32 +86,74 @@
 
     <!-- Account Settings -->
     <div id="AccountSettings" class="tab-content">
-        <!-- Content for Account Settings -->
         <h2 class="settings-header">Account Access</h2>
         <div class="account-settings">
             <div class="setting-group">
                 <h3>Name</h3>
                 <p>Change first name or last name</p>
-                <button class="change-btn">Change</button>
+                <button class="change-btn" onclick="openModal('nameModal')">Change</button>
             </div>
             <div class="setting-group">
                 <h3>Email Addresses</h3>
                 <p>Add or remove email addresses on your account</p>
-                <button class="change-btn">Change</button>
+                <button class="change-btn" onclick="openModal('emailModal')">Change</button>
             </div>
             <div class="setting-group">
                 <h3>Phone Numbers</h3>
                 <p>Add a phone number in case you have trouble signing in</p>
-                <button class="change-btn">Change</button>
+                <button class="change-btn" onclick="openModal('phoneModal')">Change</button>
             </div>
             <div class="setting-group">
                 <h3>Change Password</h3>
                 <p>Choose a unique password to protect your account</p>
-                <button class="change-btn">Change</button>
+                <button class="change-btn" onclick="openModal('passwordModal')">Change</button>
             </div>
-    
         </div>
     </div>
+
+    <!-- Modals -->
+    <div id="nameModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <form action="/update_name" method="POST" class="form-content">
+                <label for="first-name">First Name:</label>
+                <input type="text" id="first-name" name="first_name" required>
+                <label for="last-name">Last Name:</label>
+                <input type="text" id="last-name" name="last_name" required>
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="emailModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <form action="/update_email" method="POST" class="form-content">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="phoneModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <form action="/update_phone" method="POST" class="form-content">
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone" required>
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="passwordModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <form action="/update_password" method="POST" class="form-content">
+                <label for="password">New Password:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
 
     <!-- Include your JavaScript at the end of the body -->
     <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
