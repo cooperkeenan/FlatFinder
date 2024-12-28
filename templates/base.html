@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Flat Finder{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='nav.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     {% block styles %}{% endblock %}
 </head>
@@ -12,6 +13,9 @@
     <header>
         <nav>
             <div class="logo"><a href="/">Flat Finder</a></div>
+            <button class="hamburger" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
             <ul class="nav-links">
                 <li><a href="/for-you" class="{% if 'for-you' in request.path %}active{% endif %}">For You</a></li>
                 <li><a href="/search" class="{% if 'search' in request.path %}active{% endif %}">Search</a></li>
@@ -22,10 +26,13 @@
             </ul>
         </nav>
     </header>
+       
     <main>
         {% block content %}{% endblock %}
     </main>
     {% block scripts %}{% endblock %}
+    <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
+
 </body>
 </html>
 
