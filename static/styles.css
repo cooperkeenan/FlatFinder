@@ -1,23 +1,21 @@
-/* Existing Reset and Basic Styling */
+/* Basic Reset & Body */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
-
 body {
+    font-family: Arial, sans-serif;
     color: #333;
     background-color: #fbfbfb;
 }
 
-/* home Section */
+/* Home Section */
 .home {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #fbfbfb;
     height: 500px;
 }
 
@@ -25,7 +23,6 @@ body {
     width: 100%;
     height: 100%;
 }
-
 .home-image img {
     width: 100%;
     height: 100%;
@@ -33,46 +30,61 @@ body {
     object-position: center -180px;
 }
 
-/* Search Bar */
+/* Search Bar Container */
 .search-bar {
     position: absolute;
     top: 100%;
     left: 50%;
     transform: translate(-50%, -50%);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    width: 100%;
+    max-width: 400px;
     background-color: #fff;
     padding: 1rem;
     border-radius: 5px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.search-bar label {
+/* Search Form (Flex Column) */
+.search-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Label always on its own line */
+.search-label {
     font-weight: normal;
-    margin-right: 1rem;
+    margin-bottom: 0.5rem;
 }
 
-.search-bar input {
-    padding: 0.5rem;
-    width: 250px;
-    margin-right: 10px;
+/* Row holding input + button side by side on larger screens */
+.search-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* Input grows to fill available space */
+.search-row input {
+    flex: 1;
     border: none;
+    padding: 0.5rem;
     background-color: #eeeded;
     border-radius: 3px;
+    margin-right: 0.5rem; /* Space between input and button */
 }
 
-.search-bar button {
-    padding: 0.5rem 1rem;
+/* Button styling */
+.search-row button {
     background-color: #b5651d;
     color: #fff;
     border: none;
     border-radius: 3px;
+    padding: 0.5rem 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.search-bar button:hover {
+.search-row button:hover {
     background-color: #944a17;
 }
 
@@ -80,40 +92,60 @@ body {
 .about {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
     padding: 2rem 1rem;
     margin-top: 60px;
     background-color: #fbfbfb;
 }
-
 .about-box {
     width: 400px;
     background-color: #fff;
-    padding: 1.5rem;
-    padding-bottom: 2rem;
+    margin: 1rem;
+    padding: 1.5rem 1.5rem 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    color: #333;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
-
 .about-box h3 {
     padding: 10px;
     font-size: 20px;
     margin-bottom: 1rem;
     color: #b5651d;
 }
-
 .about-box p {
     font-size: 17px;
     line-height: 1.8;
     color: #9b9a9a;
 }
-
 .custom-gap span {
     display: block;
     margin-top: 4px;
+}
+
+/* Responsive Layout for Narrow Screens */
+@media (max-width: 1200px) {
+    /* Stack the input and button vertically */
+    .search-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .search-row input {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+    .search-row button {
+        width: 100%; /* Full width button below the input */
+    }
+
+    /* Stack About boxes */
+    .about {
+        flex-direction: column;
+        align-items: center;
+    }
+    .about-box {
+        width: 350px;
+    }
 }
