@@ -8,10 +8,12 @@
 
 {% block content %}
 <section class="home">
+    <!-- The hero image container -->
     <div class="home-image">
         <img src="{{ url_for('static', filename='images/HomePage_Edinburgh.jpg') }}" alt="Beautiful Flat in Edinburgh">
     </div>
 
+    <!-- Search bar is placed at the bottom edge of .home -->
     <div class="search-bar">
         <form action="{{ url_for('search_results') }}" method="get" class="search-form">
             <label for="search" class="search-label">Search Properties to Rent</label>
@@ -32,15 +34,15 @@
 <section class="about">
     <div class="about-box">
         <h3 class="custom-gap">Personalised Recommendations <span>Listings</span></h3>
-        <p>Our smart algorithm learns your preferences to showcase flats that perfectly match your unique criteria.</p>
+        <p>Our algorithm learns your preferences to showcase flats that match your unique criteria.</p>
     </div>
     <div class="about-box">
         <h3 class="custom-gap">Automated Viewing Management <span>Listings</span></h3>
-        <p>Simplify your property viewings with our automated system that handles all communications and scheduling.</p>
+        <p>Simplify your property viewings with our automated system that handles scheduling.</p>
     </div>
     <div class="about-box">
         <h3 class="custom-gap">High Quality <span>Listings</span></h3>
-        <p>We ensure every listing includes comprehensive details and high-resolution images for transparency.</p>
+        <p>We ensure every listing includes comprehensive details and high-resolution images.</p>
     </div>
 </section>
 {% endblock %}

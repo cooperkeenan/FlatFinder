@@ -13,29 +13,38 @@ body {
 /* Home Section */
 .home {
     position: relative;
+    height: 550px; /* Maintain the taller height */
     display: flex;
-    align-items: center;
+    align-items: stretch; /* Ensure .home-image covers full height */
     justify-content: center;
-    height: 500px;
 }
 
+/* Absolutely positioned image container to fill .home */
 .home-image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+    overflow: hidden;   /* Crop sides if needed */
+    z-index: 1;
 }
+
+/* The hero image itself fills .home-image's area */
 .home-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center -180px;
+    object-position: center var(--image-offset-y, 30%); /* Use CSS variable for Y-offset */
 }
 
-/* Search Bar Container */
+/* Search bar pinned to the bottom of .home */
 .search-bar {
     position: absolute;
-    top: 100%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    bottom: 0;
+    transform: translate(-50%, 50%); /* Moves half the bar below the bottom line */
+    z-index: 2;
     width: 100%;
     max-width: 400px;
     background-color: #fff;
@@ -44,36 +53,28 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Search Form (Flex Column) */
+/* Search Form */
 .search-form {
     display: flex;
     flex-direction: column;
 }
-
-/* Label always on its own line */
 .search-label {
     font-weight: normal;
     margin-bottom: 0.5rem;
 }
-
-/* Row holding input + button side by side on larger screens */
 .search-row {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
-
-/* Input grows to fill available space */
 .search-row input {
     flex: 1;
     border: none;
     padding: 0.5rem;
     background-color: #eeeded;
     border-radius: 3px;
-    margin-right: 0.5rem; /* Space between input and button */
+    margin-right: 0.5rem;
 }
-
-/* Button styling */
 .search-row button {
     background-color: #b5651d;
     color: #fff;
@@ -83,32 +84,56 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-
 .search-row button:hover {
     background-color: #944a17;
 }
 
 /* About Section */
 .about {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    display: grid;
+    /* Two columns of equal flexible width */
+    grid-template-columns: repeat(2, 1fr);
+    /* Center all items (boxes) within their cells */
+    justify-items: center;
+    
+    /* Optionally, if you want the entire grid itself centered
+       within a larger container, you can keep justify-content: center;
+       But if that causes extra offset, remove it. */
+    /* justify-content: center; */
+
+    gap: 2rem;
     padding: 2rem 1rem;
     margin-top: 60px;
     background-color: #fbfbfb;
+    
+    /* Constrain total width and center the grid on the page */
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
+
+
 .about-box {
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
     background-color: #fff;
-    margin: 1rem;
     padding: 1.5rem 1.5rem 2rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center;     /* Center contents inside the box */
     text-align: center;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
+
+/* Ensure the third box spans two columns and is centered */
+.about-box:nth-child(3) {
+    grid-column: 1 / -1;     /* Span both columns */
+    justify-self: center;    /* Center it horizontally */
+}
+
+
+
 .about-box h3 {
     padding: 10px;
     font-size: 20px;
@@ -125,27 +150,41 @@ body {
     margin-top: 4px;
 }
 
+
 /* Responsive Layout for Narrow Screens */
 @media (max-width: 1200px) {
-    /* Stack the input and button vertically */
-    .search-row {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    .search-row input {
-        margin-right: 0;
-        margin-bottom: 0.5rem;
-    }
-    .search-row button {
-        width: 100%; /* Full width button below the input */
+    .about {
+        grid-template-columns: 1fr; /* Single column layout */
+        justify-items: center; /* Center each box */
     }
 
-    /* Stack About boxes */
-    .about {
-        flex-direction: column;
-        align-items: center;
-    }
     .about-box {
-        width: 350px;
+        width: 350px; /* Adjust width for smaller screens */
+    }
+
+    /* Reset grid column for single-column layout */
+    .about-box:nth-child(3) {
+        grid-column: auto;
+    }
+}
+
+@media (min-width: 800px) and (max-width: 1200px) {
+    .about {
+        grid-template-columns: repeat(2, 1fr); /* Two columns */
+    }
+
+    .about-box:nth-child(3) {
+        grid-column: span 2; /* Ensure the third box spans both columns */
+        justify-self: center;
+    }
+}
+
+@media (max-width: 500px) {
+    .home {
+        height: 400px; /* Set height for smaller screens */
+    }
+    .home-image img {
+        height: 100%;
+        width: auto; /* Maintain aspect ratio */
     }
 }
