@@ -1,44 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Viewings - Flat Finder</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='viewings.css') }}">
-</head>
-<body>
-    <header>
-        <nav>
-            <div class="logo"><a href="/">Flat Finder</a></div>
-            <ul class="nav-links">
-                <li><a href="/for-you">For You</a></li>
-                <li><a href="/search">Search</a></li>
-                <li><a href="/viewings" class="active">Viewings</a></li>
-                <li><a href="/profile">Profile</a></li>
-                <li><a href="/lister">Lister Portal</a></li>
-                <li><a href="/contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+{% extends 'base.html' %}
 
-    <main>
-        <div class="viewing-card">
-            <div class="thumbnail">thumbnail</div>
-            <div class="viewing-details">
-                <h2>£2000</h2>
-                <ul class="viewing-info">
-                    <li>Beds: 2</li>
-                    <li>Showers: 2</li>
-                    <li>Listing Company: Some Company</li>
-                </ul>
-                <p class="viewing-description">Immaculately presented two bedroom, first floor apartment with highly desirable allocated private parking space in the enviable West End.</p>
-                <div class="viewing-status">
-                    <span class="status confirmed">Viewing Confirmed</span>
-                    <span class="date">11/09/24</span>
-                </div>
+{% block title %}Viewings - Flat Finder{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='viewings.css') }}">
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="viewing-card">
+        <div class="thumbnail">thumbnail</div>
+        <div class="viewing-details">
+            <h2>£2000</h2>
+            <ul class="viewing-info">
+                <li>Beds: 2</li>
+                <li>Showers: 2</li>
+                <li>Listing Company: Some Company</li>
+            </ul>
+            <p class="viewing-description">Immaculately presented two bedroom, first floor apartment with highly desirable allocated private parking space in the enviable West End.</p>
+            <div class="viewing-status">
+                <span class="status confirmed">Viewing Confirmed</span>
+                <span class="date">11/09/24</span>
             </div>
         </div>
-    </main>
-</body>
-</html>
+    </div>
+</main>
+{% endblock %}

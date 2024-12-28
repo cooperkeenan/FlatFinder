@@ -1,122 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For You - Flat Finder</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='property.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+{% extends 'base.html' %}
 
-    <script src="{{ url_for('static', filename='js/map.js') }}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD17hoIlQQiSJt22TzHa77DZdxyYpdxAfA&callback=initMap" async defer></script>
-</head>
-<body>
-    <header>
-        <nav>
-            <div class="logo"><a href="/">Flat Finder</a></div>
-            <ul class="nav-links">
-                <li><a href="/for-you">For You</a></li>
-                <li><a href="/search">Search</a></li>
-                <li><a href="/viewings">Viewings</a></li>
-                <li><a href="/profile">Profile</a></li>
-                <li><a href="/lister">Lister Portal</a></li>
-                <li><a href="/contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <a href="{{ url_for('search_results', min_price=request.args.get('min_price', ''), max_price=request.args.get('max_price', ''), bedrooms=request.args.get('bedrooms', ''), location=request.args.get('location', '')) }}" class="return-search">← Back to search results</a>
+{% block title %}Property Details - Flat Finder{% endblock %}
 
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='property.css') }}">
+{% endblock %}
 
+{% block content %}
+<a href="{{ url_for('search_results', min_price=request.args.get('min_price', ''), max_price=request.args.get('max_price', ''), bedrooms=request.args.get('bedrooms', ''), location=request.args.get('location', '')) }}" class="return-search">← Back to search results</a>
 
-        <!-- Normal Image Display -->
-        <div class="property-images">
-            <div class="main-image">
-                <img src="{{ property.main_image_url }}" alt="Main Image" data-slide="1" id="main-image">
-            </div>
-            
-            <div class="other-images">
-                {% for url in image_urls[:2] %}
-                    <img src="{{ url }}" alt="Other Image" data-slide="{{ loop.index + 1 }}" class="other-image">
-                {% endfor %}
-            </div>
-            
-            
-        </div>
-
-    <!-- The Modal/Lightbox -->
-    <div id="myModal" class="modal">
-        <span class="close cursor" onclick="closeModal()">&times;</span>
-        <div class="modal-content">
-            <div class="mySlides">
-                <img src="{{ property.main_image_url }}">
-            </div>
-            {% for url in image_urls %}
-                <div class="mySlides">
-                    <img src="{{ url }}">
-                </div>
-            {% endfor %}            
-        </div>
-        <!-- Next/previous controls -->
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+<!-- Normal Image Display -->
+<div class="property-images">
+    <div class="main-image">
+        <img src="{{ property.main_image_url }}" alt="Main Image" data-slide="1" id="main-image">
     </div>
+    <div class="other-images">
+        {% for url in image_urls[:2] %}
+        <img src="{{ url }}" alt="Other Image" data-slide="{{ loop.index + 1 }}" class="other-image">
+        {% endfor %}
+    </div>
+</div>
 
+<!-- The Modal/Lightbox -->
+<div id="myModal" class="modal">
+    <span class="close cursor" onclick="closeModal()">&times;</span>
+    <div class="modal-content">
+        <div class="mySlides">
+            <img src="{{ property.main_image_url }}">
+        </div>
+        {% for url in image_urls %}
+        <div class="mySlides">
+            <img src="{{ url }}">
+        </div>
+        {% endfor %}
+    </div>
+    <!-- Next/previous controls -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
 
-        
+<div class="listing-details">
+    <div class="price">
+        <p>{{ property.price_pcm }}</p>
+    </div>
+    <div class="address">
+        <p>{{ property.address }}</p>
+    </div>
+    <div class="date-added">
+        <p>Date listed: {{ property.date_added }}</p>
+    </div>
+    <div class="divider"></div>
+    <div class="icons">
+        <span class="detail-item"><i class="fas fa-bed"></i> Beds {{ property.bedrooms }}</span>
+        <span class="detail-item"><i class="fas fa-shower"></i> Showers {{ property.bathrooms }}</span>
+        <span class="detail-item"><i class="fas fa-house"></i> {{ property.flat_type }}</span>
+        <div class="floorplan">
+            {% if property.number_floorplans > 0 %}
+            <img src="{{ url_for('static', filename='images/floorplan.png') }}">
+            <p>Floor plan</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="divider"></div>
+    <h2>Property Description & Key Features</h2>
+    <div class="key-features">
+        <div class="features-left">
+            <li>Very Spacious Rooms</li>
+            <li>Private Parking Space</li>
+            <li>Shower</li>
+            <li>Fridge Freezer</li>
+        </div>
+        <div class="features-right">
+            <li>Main Door and Terrace</li>
+            <li>Freshly Decorated</li>
+            <li>Washing machine</li>
+            <li>Balcony</li>
+        </div>
+    </div>
+    <div class="description">
+        <p>{{ property.full_description | replace('\n', '<br>') | safe }}</p>
+    </div>
+    <div class="divider"></div>
+    <div id="map" data-latitude="{{ property.latitude }}" data-longitude="{{ property.longitude }}"></div>
+</div>
+{% endblock %}
 
-        <div class="listing-details">
-            <div class="price">
-                <p>{{ property.price_pcm }}</p>
-            </div>
-            <div class="address">
-                <p>{{ property.address }}</p>
-            </div>
-            <div class="date-added">
-                <p>Date listed: {{ property.date_added }}</p>
-            </div>
-            
-            <div class="divider"></div>
-            <div class="icons">
-                <span class="detail-item"><i class="fas fa-bed"></i> Beds {{ property.bedrooms }}</span>
-                <span class="detail-item"><i class="fas fa-shower"></i> Showers {{ property.bathrooms }}</span>
-                <span class="detail-item"><i class="fas fa-house"></i> {{ property.flat_type }}</span>
-                <div class="floorplan">
-                {% if property.number_floorplans > 0 %}
-                <img src="{{ url_for('static', filename='images/floorplan.png') }}">
-                <p>Floor plan</p>
-                {% endif %}
-                </div>
-            </div>
-             
-            <div class="divider"></div>
-
-            <h2>Property Description & Key Features</h3>
-            <div class="key-features">
-                <div class="features-left">
-                    <li>Very Spacious Rooms</li>
-                    <li>Private Parking Space</li>
-                    <li>Shower</li>
-                    <li>Fridge Freezer</li>
-                </div>
-                <div class="features-right">
-                    <li>Main Door and Terrace</li>
-                    <li>Freshly Decorated</li>
-                    <li>Washing machine</li>
-                    <li>Balcony</li>
-                </div>
-            </div>
-
-            <div class="description">
-                <p>{{ property.full_description | replace('\n', '<br>') | safe }}</p>
-            </div>
-
-            <div class="divider"></div>
-
-            <div id="map" data-latitude="{{ property.latitude }}" data-longitude="{{ property.longitude }}"></div>
-            
-    </main>
-    <script src="{{ url_for('static', filename='js/gallery.js') }}"></script>
-</body>
-</html>
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/map.js') }}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD17hoIlQQiSJt22TzHa77DZdxyYpdxAfA&callback=initMap" async defer></script>
+<script src="{{ url_for('static', filename='js/gallery.js') }}"></script>
+{% endblock %}
