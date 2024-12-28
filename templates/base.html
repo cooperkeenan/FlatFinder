@@ -17,15 +17,27 @@
                 <i class="fas fa-bars"></i>
             </button>
             <ul class="nav-links">
-                <li><a href="/for-you" class="{% if 'for-you' in request.path %}active{% endif %}">For You</a></li>
-                <li><a href="/search" class="{% if 'search' in request.path %}active{% endif %}">Search</a></li>
-                <li><a href="/viewings" class="{% if 'viewings' in request.path %}active{% endif %}">Viewings</a></li>
-                <li><a href="/profile" class="{% if 'profile' in request.path %}active{% endif %}">Profile</a></li>
-                <li><a href="/lister" class="{% if 'lister' in request.path %}active{% endif %}">Lister Portal</a></li>
-                <li><a href="/contact" class="{% if 'contact' in request.path %}active{% endif %}">Contact</a></li>
+                <li><a href="/for-you">For You</a></li>
+                <li><a href="/search">Search</a></li>
+                <li><a href="/viewings">Viewings</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/lister">Lister Portal</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+            <ul class="nav-links-sliding">
+                <li><a href="/">Home</a></li>
+                <li><a href="/for-you">For You</a></li>
+                <li><a href="/search">Search</a></li>
+                <li><a href="/viewings">Viewings</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/lister">Lister Portal</a></li>
+                <li><a href="/contact">Contact</a></li>
             </ul>
         </nav>
+        <div class="backdrop"></div>
     </header>
+    
+    
        
     <main>
         {% block content %}{% endblock %}

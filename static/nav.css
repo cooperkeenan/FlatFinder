@@ -15,19 +15,20 @@ body {
 header {
     background-color: #f0f0f0;
     padding: 1rem;
+    position: relative;
+    z-index: 20; /* Ensure header stays above the sliding menu */
 }
 
 nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: relative; /* Needed for absolute positioning of the hamburger */
 }
 
 .logo {
     font-weight: bold;
     font-size: 1.5rem;
-    margin-left: 100px;
+    margin-left: 20px;
     color: #b5651d;
 }
 
@@ -36,13 +37,17 @@ nav {
     text-decoration: none;
 }
 
+/* Main Navigation Links (Visible by Default) */
 .nav-links {
     list-style: none;
     display: flex;
     flex: 1;
     justify-content: space-evenly;
-    padding-left: 2rem;
-    margin-right: 100px;
+    margin-right: 20px;
+}
+
+.nav-links li {
+    margin: 0 10px;
 }
 
 .nav-links a {
@@ -58,61 +63,98 @@ nav {
 
 /* Hamburger Menu Button */
 .hamburger {
-    display: none; /* Hidden by default */
+    display: none; /* Hidden by default (only visible on smaller screens) */
     background: none;
     border: none;
     font-size: 1.5rem;
-    color: #333;
+    color: #b5651d; /* Matches the logo color */
     cursor: pointer;
+    padding: 10px;
     position: absolute;
     top: 50%; /* Center vertically within the nav */
-    right: 20px; /* Align to the right */
     transform: translateY(-50%);
-    padding: 10px;
-    border-radius: 50%; /* Optional: makes the button round */
-    background-color: #fff; /* Light background */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    right: 1rem;
+    z-index: 30; /* Ensure it's above other elements */
 }
 
 .hamburger:hover {
-    background-color: #f0f0f0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
+    color: #944a17; /* Slightly darker on hover */
 }
 
 .hamburger i {
-    color: #b5651d; /* Matches the logo color for consistency */
+    font-size: 1.5rem;
 }
 
-.hamburger:focus {
-    outline: none;
+/* Side Navigation Menu for Small Screens */
+.nav-links-sliding {
+    position: fixed; /* Fixed position for the sliding menu */
+    top: 0;
+    right: -300px; /* Start off-screen */
+    height: 100%; /* Full height of the viewport */
+    width: 300px; /* Width of the menu */
+    background-color: #fff;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding-top: 2rem; /* Space at the top */
+    transition: right 0.3s ease; /* Smooth sliding effect */
+    z-index: 10; /* Ensure it's above other elements */
 }
 
-/* Responsive styles for Hamburger Menu */
+.nav-links-sliding.active {
+    right: 0; /* Bring the menu into view */
+}
+
+.nav-links-sliding li {
+    list-style: none; /* Remove bullet points */
+    text-align: left; /* Align text to the left */
+    margin: 1rem 0; /* Space between links */
+    width: 100%; /* Ensure full width for alignment */
+    padding-left: 1rem; /* Add padding for uniform left alignment */
+}
+
+.nav-links-sliding a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links-sliding a:hover {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+/* Backdrop to Dim the Background When Menu Is Open */
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 5;
+    display: none; /* Hidden by default */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.backdrop.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Responsive Styles */
 @media (max-width: 768px) {
-    .hamburger {
-        display: block; /* Show hamburger on small screens */
-    }
-
     .nav-links {
-        display: none; /* Hide menu by default */
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 10px;
-        background-color: #fff;
-        padding: 1rem;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-        z-index: 10;
-        transition: transform 0.3s ease, opacity 0.3s ease; /* Add animation */
-        transform: translateY(-10px); /* Initially slide up slightly */
-        opacity: 0; /* Initially invisible */
+        display: none; /* Hide main nav links on smaller screens */
     }
 
-    .nav-links.active {
-        display: flex; /* Show menu when active */
-        transform: translateY(0); /* Slide into view */
-        opacity: 1; /* Fully visible */
+    .hamburger {
+        display: block; /* Show hamburger menu button on smaller screens */
     }
 }

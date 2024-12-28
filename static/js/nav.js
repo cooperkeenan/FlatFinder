@@ -1,8 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
+    const navLinksSliding = document.querySelector('.nav-links-sliding');
+    const backdrop = document.querySelector('.backdrop');
 
     hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active'); // Add/remove 'active' class
+        navLinksSliding.classList.toggle('active'); // Toggle sliding menu
+        backdrop.classList.toggle('active'); // Toggle backdrop
+    });
+
+    backdrop.addEventListener('click', () => {
+        navLinksSliding.classList.remove('active'); // Hide menu
+        backdrop.classList.remove('active'); // Hide backdrop
     });
 });
