@@ -1,68 +1,116 @@
-/* Search Page Layout */
+/* ============================
+   1) Global / Base Styles
+============================ */
+
+/* Page layout container */
 .search-page {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 2rem;
     text-align: left;
-}
-
-/* Search Form */
-.search-form {
+  }
+  
+  /* Generic "Search" button style */
+  .search-btn {
+    background-color: #b5651d;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .search-btn:hover {
+    background-color: #944a17;
+  }
+  
+  /* The small "Filters" button (shown only on small screens) */
+  .filters-btn {
+    background-color: #b5651d;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: none; /* Shown at ≤1200px in media queries */
+  }
+  .filters-btn:hover {
+    background-color: #944a17;
+  }
+  
+  /* ------------------------------
+     2) The "Search Form" Card
+  ------------------------------ */
+  .search-form {
     width: 80%;
     max-width: 400px;
     background-color: #f9f9f9;
     padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 2rem;
-}
-
-.search-form h1 {
+  }
+  .search-form h1 {
     color: #333;
     margin-bottom: 1rem;
-}
-
-.search-form label {
+  }
+  .search-form label {
     display: block;
     font-weight: bold;
     margin: 0.5rem 0 0.25rem;
-}
-
-.search-form input {
+  }
+  .search-form input {
     width: 100%;
     padding: 0.5rem;
     margin-bottom: 1rem;
     border: 1px solid #ddd;
     border-radius: 4px;
-}
-
-.search-form button {
+  }
+  .search-form button {
     width: 100%;
     padding: 0.75rem;
     background-color: #b5651d;
     color: #fff;
     border: none;
     border-radius: 4px;
-    cursor: pointer;
     font-weight: bold;
+    cursor: pointer;
     transition: background-color 0.3s ease;
-}
-
-
-.search-form button:hover {
+  }
+  .search-form button:hover {
     background-color: #944a17;
-}
+  }
+  
 
 
 
 
 
-/* Search Modification Section Styling */
-.search-modify {
+
+/* ================================
+   GLOBAL / BASE STYLES
+=============================== */
+
+/* Usually some reset or base styles here, if needed */
+
+/* For demonstration, ensure the body is visible */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Container for the entire search area */
+  .search-modify {
+    /* The "desktop" container, but we’ll override
+       some properties in media queries below */
     display: flex;
-    align-items: flex-start; 
-    justify-content: flex-start; 
+    align-items: center;
+    justify-content: flex-start;
     width: 100%;
     max-width: 1000px;
     padding: 12px;
@@ -70,80 +118,101 @@
     border-radius: 20px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     margin-top: 20px;
-    margin-left: 123px ;
-}
-
-
-.search-modify input[type="text"] {
-    padding: 10px;
-    margin: 10px;
+    margin-left: 123px;  /* Remove this if you want full centering */
+    margin-right: auto;  /* So it doesn’t stretch off screen to the right */
+  }
+  
+  /* The row that holds:
+     - [Search Input]
+     - [Filters button? (only on small screens)]
+     - [Search button]
+  */
+  .search-row {
+    display: flex;
+    flex-wrap: nowrap; 
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+  }
+  
+  /* The main search input style */
+  .search-row input[type="text"] {
+    padding: 10px 14px; 
     border: 1px solid #ddd;
     border-radius: 20px;
-    background-color: white;
-    min-width: 250px; 
-}
-
-.search-modify select {
-    padding: 10px;
-    margin: 10px;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    background-color: white;
-    min-width: 150px; 
-}
-
-.search-modify .filter-btn {
-    padding: 12px 20px;
-    margin: 10px;
-    margin-left: 50px;
+    background-color: #fff;
+    font-size: 1rem;
+    flex: 0 1 250px; /* Default to 250px wide; can shrink if needed */
+  }
+  
+  /* The "Search" button */
+  .search-btn {
     background-color: #b5651d;
     color: #fff;
     border: none;
     border-radius: 20px;
-    cursor: pointer;
+    padding: 10px 20px;
     font-weight: bold;
+    cursor: pointer;
     transition: background-color 0.3s ease;
-}
-
-
-.search-modify .filter-btn:hover {
+  }
+  .search-btn:hover {
     background-color: #944a17;
-}
-
-
-
-
-
-
-
-
-
-/* Search Results Layout */
-.search-results-page {
+  }
+  
+  /* The "Filters" button (hidden on desktop by default) */
+  .filters-btn {
+    display: none;
+    background-color: #b5651d;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .filters-btn:hover {
+    background-color: #944a17;
+  }
+  
+  /* Container for advanced dropdowns (Min Price, Max Price, Bedrooms) */
+  .advanced-filters {
+    display: flex;        /* We'll override in media queries */
+    flex-wrap: nowrap;
+    gap: 10px;
+    margin-left: 20px;    /* Space from the input row */
+  }
+  
+  /* Each advanced filter select */
+  .advanced-filters select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background-color: #fff;
+    min-width: 100px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  /* --------------------------------------------
+     4) Search Results Layout (List of Properties)
+  --------------------------------------------- */
+  .search-results-page {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
-
-.search-results-page {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; 
-}
-
-/* Results List Styling */
-.results-list {
-    width: 100%; 
+    align-items: flex-start;
+  }
+  .results-list {
+    width: 100%;
     max-width: 1000px;
     margin-left: 100px;
     display: grid;
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
     gap: 25px;
-}
-
-.result-item {
+  }
+  .result-item {
     background-color: #f9f9f9;
     border-radius: 20px;
     box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
@@ -151,111 +220,147 @@
     align-items: flex-start;
     width: 100%;
     height: auto;
-}
-
-.result-item-link {
-    text-decoration: none; 
-    color: inherit; 
-}
-
-.property-image {
-    flex: 0 0 400px; 
-    height: 100%; 
+  }
+  .result-item-link {
+    text-decoration: none;
+    color: inherit;
+  }
+  .property-image {
+    flex: 0 0 400px;
+    height: 100%;
     max-height: 300px;
-    overflow: hidden; 
+    overflow: hidden;
     display: flex;
-    align-items: center; 
-}
-
-.property-image img {
+    align-items: center;
+  }
+  .property-image img {
     width: 100%;
-    height: 100%; 
-    object-fit: cover; 
-    border-top-left-radius: 20px; 
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-
-}
-
-.results-details {
+  }
+  .results-details {
     margin-top: 6px;
-    flex-grow: 1; 
-    padding-left: 20px; 
+    flex-grow: 1;
+    padding-left: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center; 
-}
-
-.results-details h3 {
+    justify-content: center;
+  }
+  .results-details h3 {
     margin-top: 6px;
     color: #b5651d;
     font-size: 1.4rem;
-}
-
-.results-details h4 {
+  }
+  .results-details h4 {
     margin-top: 4px;
     color: #464545;
-    font-size: 1.0rem;
-}
-
-.results-details p {
+    font-size: 1rem;
+  }
+  .results-details p {
     margin-top: 8px;
     color: #666;
-    font-size: 0.9rem; 
-}
-
-.results-icons {
+    font-size: 0.9rem;
+  }
+  .results-icons {
     display: flex;
-    justify-content: flex-start; 
+    justify-content: flex-start;
     gap: 15px;
-    margin-top: 20px; 
-}
-
-.results-extras {
+    margin-top: 20px;
+  }
+  .results-extras {
     display: flex;
-    align-items: center; 
-    justify-content: space-between; 
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
-
-}
-
-.results-logo {
+  }
+  .results-logo {
     margin-top: 40px;
     margin-bottom: 10px;
-}
-
-.results-extras img {
-    max-width: 75px; 
-    max-height: 50px; 
-    align-self: bottom; 
+  }
+  .results-extras img {
+    max-width: 75px;
+    max-height: 50px;
+    align-self: bottom;
     vertical-align: bottom;
-}
-
-
-
-.save-btn {
+  }
+  .save-btn {
     padding: 8px 10px;
-    font-size: 16px; 
-    color: #fff; 
-    background-color: #b5651d; 
-    border: none; 
-    cursor: pointer; 
-    display: flex; 
+    font-size: 16px;
+    color: #fff;
+    background-color: #b5651d;
+    border: none;
+    cursor: pointer;
+    display: flex;
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     padding-right: 30px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
+  }
+  .save-btn:hover {
+    background-color: #944a17;
+  }
+  
+  
 
+
+
+
+
+  
+/* ================================
+   MEDIA QUERIES
+=============================== */
+
+/* 1) Desktop & Larger: >=1201px
+   Show advanced filters in one row, hide .filters-btn
+*/
+@media (min-width: 1201px) {
+  .search-modify {
+    flex-wrap: nowrap;
+  }
+  .advanced-filters {
+    display: flex !important; 
+  }
+  .filters-btn {
+    display: none !important;
+  }
 }
 
-.save-btn:hover {
-    background-color: #944a17; 
+/* 2) Up to 1200px (tablet/phone):
+   Hide advanced filters, show .filters-btn.
+   Let the input expand fully if you want. 
+*/
+@media (max-width: 1200px) {
+  .advanced-filters {
+    display: none !important;
+  }
+  .filters-btn {
+    display: inline-block !important;
+  }
+  
+  /* Possibly stack or keep them in one row. 
+     We'll keep in one row so it doesn't wrap. */
+  .search-modify {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin: 20px auto; 
+    max-width: 600px;
+  }
+
+  .search-row {
+    flex-wrap: nowrap;
+    gap: 8px;
+    width: 100%;
+  }
+  
+  /* Let the text input fill leftover space on smaller screens
+     if you want a big input. */
+  .search-row input[type="text"] {
+    flex: 1;  /* Grow to fill space */
+  }
 }
-
-
-
-
-
-

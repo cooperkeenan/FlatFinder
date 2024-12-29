@@ -7,43 +7,92 @@
 {% endblock %}
 
 {% block content %}
-<!-- Search Filters Form -->
+<!-- 
+  The main container: "search-modify"
+  We'll arrange everything in a single row on large screens.
+-->
 <section class="search-modify">
     <form action="{{ url_for('search_results') }}" method="GET">
-        <!-- Location Search Input -->
-        <input type="text" name="location" placeholder="Search location" value="{{ request.args.get('location', '') }}">
         
-        <!-- Minimum Price Dropdown -->
-        <select name="min_price" id="min_price">
-            <option value="">Min Price</option>
-            {% for price in [500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3250, 3500, 3750, 4000, 4250, 4500, 4750, 5000] %}
-            <option value="{{ price }}" {{ 'selected' if request.args.get('min_price', default='')|string == price|string else '' }}>£{{ price }}</option>
-            {% endfor %}
-        </select>
+        <!-- =========== ROW for smaller screens =========== -->
+        <!-- 
+          .search-row will hold:
+           1) The "location" input
+           2) A small "Filters" button (only visible at ≤1200px)
+           3) The main "Search" button
+        -->
+        <div class="search-row">
+            <!-- Location Search Input -->
+            <input 
+              type="text" 
+              name="location" 
+              placeholder="Search location" 
+              value="{{ request.args.get('location', '') }}"
+            >
+            
+            <!-- "Filters" button (visible only on small screens) -->
+            <button type="button" class="filters-btn">Filters</button>
 
-        <!-- Maximum Price Dropdown -->
-        <select name="max_price" id="max_price">
-            <option value="">Max Price</option>
-            {% for price in [500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3250, 3500, 3750, 4000, 4250, 4500, 4750, 5000] %}
-            <option value="{{ price }}" {{ 'selected' if request.args.get('max_price', default='')|string == price|string else '' }}>£{{ price }}</option>
-            {% endfor %}
-        </select>
-
-        <!-- Bedrooms Dropdown -->
-        <select name="bedrooms" id="bedrooms">
-            <option value="">Bedrooms</option>
-            {% for num in range(1, 5) %}
-            <option value="{{ num }}" {{ 'selected' if request.args.get('bedrooms', '') == num|string else '' }}>
-                {{ num }}{% if num == 4 %}+{% endif %}
-            </option>
-            {% endfor %}
-        </select>
+            <!-- The main "Search" button -->
+            <button type="submit" class="search-btn">Search</button>
+        </div>
         
-        <button type="submit" class="filter-btn">Search</button>
+        <!-- =========== ADVANCED FILTERS (Desktop) =========== -->
+        <!-- 
+          This block is shown on large screens (≥1201px).
+          On smaller screens, it’s hidden in favor of the "Filters" button.
+        -->
+        <div class="advanced-filters">
+            <!-- Minimum Price Dropdown -->
+            <select name="min_price" id="min_price">
+                <option value="">Min Price</option>
+                {% for price in [500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 
+                                3000, 3250, 3500, 3750, 4000, 4250, 4500, 4750, 5000] %}
+                  <option 
+                    value="{{ price }}" 
+                    {{ 'selected' if request.args.get('min_price', '')|string == price|string else '' }}
+                  >
+                    £{{ price }}
+                  </option>
+                {% endfor %}
+            </select>
+            
+            <!-- Maximum Price Dropdown -->
+            <select name="max_price" id="max_price">
+                <option value="">Max Price</option>
+                {% for price in [500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 
+                                3000, 3250, 3500, 3750, 4000, 4250, 4500, 4750, 5000] %}
+                  <option 
+                    value="{{ price }}" 
+                    {{ 'selected' if request.args.get('max_price', '')|string == price|string else '' }}
+                  >
+                    £{{ price }}
+                  </option>
+                {% endfor %}
+            </select>
+
+            <!-- Bedrooms Dropdown -->
+            <select name="bedrooms" id="bedrooms">
+                <option value="">Bedrooms</option>
+                {% for num in range(1, 5) %}
+                  <option 
+                    value="{{ num }}" 
+                    {{ 'selected' if request.args.get('bedrooms', '') == num|string else '' }}
+                  >
+                    {{ num }}{% if num == 4 %}+{% endif %}
+                  </option>
+                {% endfor %}
+            </select>
+        </div>
+        <!-- END .advanced-filters -->
+
     </form>
 </section>
+<!-- END .search-modify -->
 
-<!-- Search Results Section -->
+<!-- ===============================
+     Search Results Section
+=============================== -->
 <main class="search-results-page">
     <section class="results-list">
         {% for property in properties %}
@@ -61,8 +110,12 @@
                     <h4 class="address">{{ property.address }}</h4>
                     <p class="description">{{ property.description }}</p>
                     <div class="results-icons">
-                        <span class="detail-item"><i class="fas fa-bed"></i> Beds {{ property.bedrooms }}</span>
-                        <span class="detail-item"><i class="fas fa-shower"></i> Showers {{ property.bathrooms }}</span>
+                        <span class="detail-item">
+                            <i class="fas fa-bed"></i> Beds {{ property.bedrooms }}
+                        </span>
+                        <span class="detail-item">
+                            <i class="fas fa-shower"></i> Showers {{ property.bathrooms }}
+                        </span>
                     </div>
                     <p>Date Added: {{ property.date_added }}</p>
                 </a>
@@ -70,7 +123,9 @@
                     <div class="results-logo">
                         <img src="{{ property.lister_logo }}">
                     </div>
-                    <button class="save-btn"><i class="fas fa-heart"></i></button>
+                    <button class="save-btn">
+                        <i class="fas fa-heart"></i>
+                    </button>
                 </div>
             </div>
         </div>
