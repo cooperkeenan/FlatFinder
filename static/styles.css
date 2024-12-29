@@ -95,11 +95,6 @@ body {
     grid-template-columns: repeat(2, 1fr);
     /* Center all items (boxes) within their cells */
     justify-items: center;
-    
-    /* Optionally, if you want the entire grid itself centered
-       within a larger container, you can keep justify-content: center;
-       But if that causes extra offset, remove it. */
-    /* justify-content: center; */
 
     gap: 2rem;
     padding: 2rem 1rem;
