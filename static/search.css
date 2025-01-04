@@ -279,7 +279,7 @@
 
 
 
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
 
     .search-modify {
       display: flex;           /* Let the container itself be flex */
@@ -329,9 +329,87 @@
   
   
 
+/* Hidden by default */
+.mobile-filters-panel {
+    display: none;
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100vw;
+    height: 100vh; 
+    background-color: rgba(255, 255, 255, 0.95); 
+    z-index: 9999; 
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+/* When the panel is "shown" */
+.mobile-filters-panel.show-filters {
+    display: block;
+}
+
+/* A simple close button style */
+.close-filters-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    float: right;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.close-filters-btn:hover{
+    color: #6b6a6a;
+}
+
+/* The form inside the overlay (mobile) */
+.mobile-filters-panel form {
+    margin-top: 50px;
+    margin-right: 50px;
+    margin-left: 50px;
+    min-height: 300px;
+    min-width: 300px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.mobile-filters-panel input, .mobile-filters-panel select {
+    width: 100%;
+    border: 1px solid #666;
+    color: #666; 
+    padding-left: 10px;
+    border-radius: 15px;
+    min-height: 40px;
+    max-width: 500px;
+    min-width: 300px;
+}
+
+  
+
+/* Full-width search button on mobile */
+.mobile-search-btn {
+    width: 100%;
+    background-color: #b5651d;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    padding: 1rem;
+    font-weight: bold;
+    max-width: 300px;
+}
+
+.mobile-search-btn:hover {
+    background-color: #8a4910;
+}
+  
+
 
 /* Phone Styles */
 @media (max-width: 700px) {
+
     /* Stack the card vertically, as you already did */
     .result-item {
       flex-direction: column;

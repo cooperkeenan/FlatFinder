@@ -67,6 +67,64 @@
     </form>
 </section>
 
+
+<!-- The overlay for mobile filters -->
+<div class="mobile-filters-panel" id="mobileFilters">
+    <!-- A close button -->
+    <button type="button" class="close-filters-btn">×</button>
+
+    <form action="{{ url_for('search_results') }}" method="GET">
+        <!-- Same fields as the 'search-modify' form -->
+        <input 
+            type="text" 
+            name="location" 
+            placeholder="Search location" 
+            value="{{ request.args.get('location', '') }}"
+        >
+        
+        <select name="min_price" id="min_price">
+            <option value="">Min Price</option>
+            {% for price in [500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 
+                3000, 3250, 3500, 3750, 4000, 4250, 4500, 4750, 5000] %}
+            <option 
+                value="{{ price }}"
+                {{ 'selected' if request.args.get('min_price', default='')|string == price|string else '' }}
+            >
+              £{{ price }}
+            </option>
+            {% endfor %}
+        </select>
+        
+        <select name="max_price" id="max_price">
+            <option value="">Max Price</option>
+            {% for price in [500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 
+                3000, 3250, 3500, 3750, 4000, 4250, 4500, 4750, 5000] %}
+            <option 
+                value="{{ price }}"
+                {{ 'selected' if request.args.get('max_price', default='')|string == price|string else '' }}
+            >
+              £{{ price }}
+            </option>
+            {% endfor %}
+        </select>
+
+        <select name="bedrooms" id="bedrooms">
+            <option value="">Bedrooms</option>
+            {% for num in range(1, 5) %}
+            <option 
+                value="{{ num }}"
+                {{ 'selected' if request.args.get('bedrooms', '') == num|string else '' }}
+            >
+              {{ num }}{% if num == 4 %}+{% endif %}
+            </option>
+            {% endfor %}
+        </select>
+
+        <!-- Full-width search on mobile -->
+        <button type="submit" class="filter-btn mobile-search-btn">Search</button>
+    </form>
+</div>
+
 <!-- Search Results -->
 <main class="search-results-page">
     <section class="results-list">
@@ -101,4 +159,7 @@
         {% endfor %}
     </section>
 </main>
+
+
+<script src="{{ url_for('static', filename='js/search_results.js') }}"></script>
 {% endblock %}
