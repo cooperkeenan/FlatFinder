@@ -280,13 +280,12 @@
 
 
 @media (max-width: 1000px) {
-    /* Container pinned left, margin-right of 20px for the background. 
-       You might keep or adjust margin-left as needed. */
+
     .search-modify {
       display: flex;           /* Let the container itself be flex */
       align-items: center;     /* Vertically center items */
-      margin-left: 123px;      /* As you originally had, pinned left */
-      margin-right: 20px;      /* Space on the right */
+      margin-left: 40px !important;     /* As you originally had, pinned left */
+      margin-right: 30px;      /* Space on the right */
       width: auto;             /* Let width adjust naturally */
       /* or width: calc(100% - 143px); if you want strict control 
          (123px left + 20px right) */
@@ -319,8 +318,46 @@
       display: inline-block !important;
       margin-left: 10px; /* keep it side by side with the search button */
     }
+
+    .results-list {
+        margin-left: 20px !important; 
+        margin-right: 20px !important; 
+        max-width: none;     /* So it can stretch to 100% of its container */
+        width: auto;         /* Let it size naturally */
+      }
   }
   
   
 
 
+/* Phone Styles */
+
+
+  @media (max-width: 700px) {
+    .search-modify {
+        margin-left: 40px !important;    /* Overrides the 123px margin */
+        align-items: flex-start;      /* Aligns its contents to the left in flex context */
+        width: auto;                  /* Let it size itself naturally */
+    }
+
+    .property-image {
+      flex: 0 0 auto;      /* So it doesn’t lock to 400px wide */
+      width: 100%;         /* Let it occupy full width on small screens */
+      max-width: 100%;     /* Keep the image from overflowing its container */
+    }
+  
+    /* If you want the card stacked vertically on small screens: */
+    .result-item {
+      flex-direction: column;
+      align-items: stretch; 
+    }
+  
+    /* Adjust the results-list margins */
+    .results-list {
+      margin-left: 20px !important; 
+      margin-right: 20px !important; 
+      max-width: none;     /* So it can stretch to 100% of its container */
+      width: auto;         /* Let it size naturally */
+    }
+  }
+  
