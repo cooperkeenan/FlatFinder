@@ -149,7 +149,7 @@ nav {
 }
 
 /* Responsive Styles */
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     .nav-links {
         display: none; /* Hide main nav links on smaller screens */
     }
