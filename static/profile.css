@@ -1,4 +1,12 @@
 
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--background-color);
+    font-family: Arial, sans-serif;
+  }
+
 
 /* MAIN BUTTONS */
 .profile-tabs {

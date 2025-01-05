@@ -1,6 +1,12 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--background-color);
+    font-family: Arial, sans-serif;
+  }
+
 /* VIEWINGS MANAGER */
-
-
 .viewing-card {
     display: flex;
     width: 60%;
