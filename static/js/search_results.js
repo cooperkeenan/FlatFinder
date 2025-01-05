@@ -1,15 +1,26 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
+    const filtersPanel = document.querySelector(".mobile-filters-panel");
     const filtersBtn = document.querySelector(".filters-btn");
-    const mobileFilters = document.getElementById("mobileFilters");
     const closeFiltersBtn = document.querySelector(".close-filters-btn");
+    const filtersForm = document.querySelector(".mobile-filters-panel form");
 
-    filtersBtn.addEventListener("click", function() {
-      // Show the overlay
-      mobileFilters.classList.add("show-filters");
+    // Open the filters panel
+    filtersBtn.addEventListener("click", () => {
+        filtersPanel.classList.add("show-filters");
+        document.body.classList.add("no-scroll"); // Disable scrolling
     });
 
-    closeFiltersBtn.addEventListener("click", function() {
-      // Hide the overlay
-      mobileFilters.classList.remove("show-filters");
+    // Close filters when clicking the background
+    filtersPanel.addEventListener("click", (e) => {
+        if (!filtersForm.contains(e.target)) {
+            filtersPanel.classList.remove("show-filters");
+            document.body.classList.remove("no-scroll"); // Enable scrolling
+        }
     });
-  });
+
+    // Close filters when clicking the close button
+    closeFiltersBtn.addEventListener("click", () => {
+        filtersPanel.classList.remove("show-filters");
+        document.body.classList.remove("no-scroll");
+    });
+});
