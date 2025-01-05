@@ -1,4 +1,7 @@
-/* Search Page Layout */
+
+
+ 
+/*----------------------------------------- Inital Search Page Styling -------------------------------------------------*/
 .search-page {
     display: flex;
     flex-direction: column;
@@ -57,8 +60,7 @@
 
 
 
-
-/* Search Modification Section Styling */
+/*----------------------------------------- Search Modification Section Styling -------------------------------------------------*/
 .search-modify {
     display: flex;
     align-items: flex-start; 
@@ -135,7 +137,7 @@
 
 
 
-/* Search Results Layout */
+/*----------------------------------------- Search Results Styling -------------------------------------------------*/
 .search-results-page {
     padding: 20px;
     display: flex;
@@ -150,7 +152,6 @@
     align-items: flex-start; 
 }
 
-/* Results List Styling */
 .results-list {
     width: 100%; 
     max-width: 1000px;
@@ -272,64 +273,7 @@
 }
 
 
-
-
-
-
-
-
-
-@media (max-width: 1200px) {
-
-    .search-modify {
-      display: flex;           /* Let the container itself be flex */
-      align-items: center;     /* Vertically center items */
-      margin-left: 40px !important;     /* As you originally had, pinned left */
-      margin-right: 30px;      /* Space on the right */
-      width: auto;             /* Let width adjust naturally */
-      /* or width: calc(100% - 143px); if you want strict control 
-         (123px left + 20px right) */
-    }
-  
-    .search-modify select {
-      display: none !important;  /* Already in your code to hide dropdowns */
-    }
-  
-    /* The form inside the container also becomes flex */
-    .search-modify form {
-      display: flex;
-      align-items: center;
-      width: 100%;
-    }
-  
-    /* Let the text input take up leftover space (the 'gap') */
-    .search-modify input[type="text"] {
-      flex: 1;            /* Expand to fill remaining room */
-      margin-right: 10px; /* A little spacing before the buttons */
-    }
-  
-    /* Pin the search button to the right (with some margin) */
-    .search-modify .filter-btn {
-      margin-left: 10px; /* keep it near the search button if you like */
-    }
-  
-    /* Show the Filters button */
-    .filters-btn {
-      display: inline-block !important;
-      margin-left: 10px; /* keep it side by side with the search button */
-    }
-
-    .results-list {
-        margin-left: 20px !important; 
-        margin-right: 20px !important; 
-        max-width: none;     /* So it can stretch to 100% of its container */
-        width: auto;         /* Let it size naturally */
-      }
-  }
-  
-  
-
-/* Hidden by default */
+/*----------------------------------------- Search filters on smaller screens -------------------------------------------------*/
 .mobile-filters-panel {
     display: none;
     position: fixed;
@@ -394,11 +338,6 @@
     min-width: 300px;
 }
 
-
-
-
-  
-
 /* Full-width search button on mobile */
 .mobile-search-btn {
     width: 100%;
@@ -415,6 +354,54 @@
 .mobile-search-btn:hover {
     background-color: #8a4910;
 }
+
+
+
+
+@media (max-width: 1200px) {
+
+    .search-modify {
+      display: flex;          
+      align-items: center;     
+      margin-left: 40px !important;    
+      margin-right: 30px;   
+      width: auto;           
+    }
+  
+    .search-modify select {
+      display: none !important;  
+    }
+  
+    .search-modify form {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+  
+    .search-modify input[type="text"] {
+      flex: 1;           
+      margin-right: 10px; 
+    }
+  
+    .search-modify .filter-btn {
+      margin-left: 10px;
+    }
+  
+
+    .filters-btn {
+      display: inline-block !important;
+      margin-left: 10px; 
+    }
+
+    .results-list {
+        margin-left: 20px !important; 
+        margin-right: 20px !important; 
+        max-width: none;   
+        width: auto;        
+      }
+  }
+  
+  
   
 
 
