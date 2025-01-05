@@ -1,14 +1,27 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--background-color);
+    font-family: Arial, sans-serif;
+  }
+
+* {
+    box-sizing: border-box;
+}
 
 
- 
-/*----------------------------------------- Inital Search Page Styling -------------------------------------------------*/
+
+/* Search Page Layout */
 .search-page {
+    min-height: 100vh;     /* Fill at least 100% of the viewport height */
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 2rem;
     text-align: left;
 }
+
 
 /* Search Form */
 .search-form {
@@ -137,19 +150,13 @@
 
 
 
-/*----------------------------------------- Search Results Styling -------------------------------------------------*/
+/* Search Results Layout */
 .search-results-page {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
-
-.search-results-page {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; 
+    align-items: flex-start;
+    background-color: var(--background-color); 
 }
 
 .results-list {
@@ -205,7 +212,7 @@
 
 .results-details h3 {
     margin-top: 6px;
-    color: #b5651d;
+    color: var(--primary-color);
     font-size: 1.4rem;
 }
 
@@ -254,7 +261,7 @@
     padding: 8px 10px;
     font-size: 16px; 
     color: #fff; 
-    background-color: #b5651d; 
+    background-color: var(--primary-color);
     border: none; 
     cursor: pointer; 
     display: flex; 
@@ -269,11 +276,68 @@
 }
 
 .save-btn:hover {
-    background-color: #944a17; 
+    background-color: var(--primary-color-hover);
 }
 
 
-/*----------------------------------------- Search filters on smaller screens -------------------------------------------------*/
+
+
+
+
+
+
+
+@media (max-width: 1200px) {
+
+    .search-modify {
+      display: flex;           /* Let the container itself be flex */
+      align-items: center;     /* Vertically center items */
+      margin-left: 40px !important;     /* As you originally had, pinned left */
+      margin-right: 30px;      /* Space on the right */
+      width: auto;             /* Let width adjust naturally */
+      /* or width: calc(100% - 143px); if you want strict control 
+         (123px left + 20px right) */
+    }
+  
+    .search-modify select {
+      display: none !important;  /* Already in your code to hide dropdowns */
+    }
+  
+    /* The form inside the container also becomes flex */
+    .search-modify form {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+  
+    /* Let the text input take up leftover space (the 'gap') */
+    .search-modify input[type="text"] {
+      flex: 1;            /* Expand to fill remaining room */
+      margin-right: 10px; /* A little spacing before the buttons */
+    }
+  
+    /* Pin the search button to the right (with some margin) */
+    .search-modify .filter-btn {
+      margin-left: 10px; /* keep it near the search button if you like */
+    }
+  
+    /* Show the Filters button */
+    .filters-btn {
+      display: inline-block !important;
+      margin-left: 10px; /* keep it side by side with the search button */
+    }
+
+    .results-list {
+        margin-left: 20px !important; 
+        margin-right: 20px !important; 
+        max-width: none;     /* So it can stretch to 100% of its container */
+        width: auto;         /* Let it size naturally */
+      }
+  }
+  
+  
+
+/* Hidden by default */
 .mobile-filters-panel {
     display: none;
     position: fixed;
@@ -341,7 +405,7 @@
 /* Full-width search button on mobile */
 .mobile-search-btn {
     width: 100%;
-    background-color: #b5651d;
+    background-color: var(--primary-color);
     color: #fff;
     border: none;
     border-radius: 15px;
@@ -352,7 +416,7 @@
 }
 
 .mobile-search-btn:hover {
-    background-color: #8a4910;
+    background-color: var(--primary-color-hover)
 }
 
 

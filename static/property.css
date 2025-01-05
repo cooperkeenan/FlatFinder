@@ -57,7 +57,7 @@
 }
 
 .price {
-    color: #b5651d;
+    color: var(--primary-color);
     font-size: 40px; 
     font-weight: bold;   
 }
@@ -98,7 +98,7 @@
 
 .divider {
     height: 1px;
-    background-color: #b5651d;
+    background-color: var(--primary-color);
     width: 100%;        
     margin: 20px 0;      
 }
@@ -154,7 +154,7 @@
     width: 100vw; 
     height: 100vh; 
     overflow: hidden; 
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: var(--modal-background);
 }
 
 

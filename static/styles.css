@@ -1,3 +1,18 @@
+:root {
+    --primary-color: #b5651d;        /* Main brand color */
+    --primary-color-hover: #944a17; /* Hover state for buttons */
+    --secondary-color: #464646;     /* Secondary text color */
+    --accent-color: #696969;        /* Accent text color */
+    --background-color: #be1c1c;    /* f7f3f3*/
+    --modal-background: rgba(0, 0, 0, 0.9); /* Modal background */
+    --divider-color: #b5651d;       /* Divider line color */
+    --button-text-color: #fff;      /* Button text */
+    --input-border-color: #666;     /* Input border color */
+    --input-text-color: #666;       /* Input text color */
+}
+
+
+
 /* Basic Reset & Body */
 * {
     margin: 0;
@@ -7,8 +22,9 @@
 body {
     font-family: Arial, sans-serif;
     color: #333;
-    background-color: #fbfbfb;
+    background-color: var(--background-color);
 }
+
 
 body.no-scroll {
     overflow: hidden;
@@ -108,7 +124,7 @@ body.no-scroll {
     gap: 2rem;
     padding: 2rem 1rem;
     margin-top: 60px;
-    background-color: #fbfbfb;
+    background-color: var(--background-color);
     
     /* Constrain total width and center the grid on the page */
     max-width: 1200px;
