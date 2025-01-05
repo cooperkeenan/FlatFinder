@@ -8,12 +8,12 @@
 
 body {
     color: #333;
-    background-color: #fbfbfb;
+    background-color: #ffffff;
 }
 
 /* Navigation Bar */
 header {
-    background-color: #f0f0f0;
+    background-color: #ffffff;
     padding: 1rem;
     position: relative;
     z-index: 20; /* Ensure header stays above the sliding menu */
@@ -29,11 +29,11 @@ nav {
     font-weight: bold;
     font-size: 1.5rem;
     margin-left: 20px;
-    color: #b5651d;
+    color: var(--primary-color);
 }
 
 .logo a {
-    color: #b5651d;
+    color: var(--primary-color);
     text-decoration: none;
 }
 
@@ -58,7 +58,7 @@ nav {
 }
 
 .nav-links a:hover {
-    color: #b5651d;
+    color: var(--primary-color-hover);
 }
 
 /* Hamburger Menu Button */
@@ -67,7 +67,7 @@ nav {
     background: none;
     border: none;
     font-size: 1.5rem;
-    color: #b5651d; /* Matches the logo color */
+    color: var(--primary-color);
     cursor: pointer;
     padding: 10px;
     position: absolute;
@@ -78,7 +78,7 @@ nav {
 }
 
 .hamburger:hover {
-    color: #944a17; /* Slightly darker on hover */
+    color: var(--primary-color-hover);
 }
 
 .hamburger i {
