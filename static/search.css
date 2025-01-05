@@ -376,8 +376,14 @@
 }
 
 .mobile-filters-panel input, .mobile-filters-panel select {
-    width: 100%;
+    /* Remove browser default style */
+    -webkit-appearance: none; 
+    -moz-appearance: none;    
+    appearance: none;       
+
+    background-color: #fff;
     border: 1px solid #666;
+    width: 100%;
     color: #666; 
     padding-left: 10px;
     border-radius: 15px;
@@ -385,6 +391,9 @@
     max-width: 500px;
     min-width: 300px;
 }
+
+
+
 
   
 
@@ -409,6 +418,10 @@
 
 /* Phone Styles */
 @media (max-width: 700px) {
+
+    .search-modify input[type="text"] {
+        margin-left: 1px !important; /* A little spacing before the buttons */
+      }
 
     /* Stack the card vertically, as you already did */
     .result-item {
