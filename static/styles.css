@@ -1,9 +1,10 @@
 :root {
-    --primary-color: #b5651d;        /* Main brand color */
+    --primary-color: #BC4228;        /* Main brand color */
     --primary-color-hover: #944a17; /* Hover state for buttons */
     --secondary-color: #464646;     /* Secondary text color */
     --accent-color: #696969;        /* Accent text color */
-    --background-color: #f7f4f4;    /* f7f3f3*/
+    --background-color: #E2E2DE;    /* f7f3f3*/
+    --second-background-color: #a4a49f;
     --modal-background: rgba(0, 0, 0, 0.9); /* Modal background */
     --divider-color: #b5651d;       /* Divider line color */
     --button-text-color: #fff;      /* Button text */
@@ -11,6 +12,10 @@
     --input-text-color: #666;       /* Input text color */
 }
 
+/* Lieght Beige: A49B8F
+    Off White: E2E2DE
+    Charcoal: 262B2F
+    
 
 
 /* Basic Reset & Body */
@@ -63,7 +68,7 @@ body {
     z-index: 2;
     width: 100%;
     max-width: 400px;
-    background-color: #fff;
+    background-color: #262B2F;
     padding: 1rem;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -77,6 +82,7 @@ body {
 .search-label {
     font-weight: normal;
     margin-bottom: 0.5rem;
+    color: #A49B8F;
 }
 .search-row {
     display: flex;

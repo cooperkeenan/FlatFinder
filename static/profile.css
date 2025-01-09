@@ -84,6 +84,11 @@ html, body {
     position: relative; 
 }
 
+.setting-group:last-child {
+    border-bottom: none;  
+}
+
+
 .change-btn {
     position: relative; 
     bottom: 30px; 
