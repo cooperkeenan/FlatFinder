@@ -13,7 +13,7 @@ body {
 
 /* Navigation Bar */
 header {
-    background-color: #ffffff;
+    background-color: #262B2F; /*BLUE*/
     padding: 1rem;
     position: relative;
     z-index: 20; /* Ensure header stays above the sliding menu */
@@ -52,7 +52,7 @@ nav {
 
 .nav-links a {
     text-decoration: none;
-    color: #333;
+    color: #A49B8F;
     font-weight: bold;
     transition: color 0.3s ease;
 }
