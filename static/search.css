@@ -125,7 +125,7 @@ html, body {
 
 
 .search-modify .filter-btn:hover {
-    background-color: #944a17;
+    background-color: var(--primary-color-hover);
 }
 
 .filters-btn {
@@ -133,7 +133,7 @@ html, body {
     padding: 12px 20px;
     margin: 10px;
     margin-left: 10px;
-    background-color: #b5651d;
+    background-color: var(--primary-color);
     color: #fff;
     border: none;
     border-radius: 20px;
@@ -142,7 +142,7 @@ html, body {
     transition: background-color 0.3s ease;
 }
 .filters-btn:hover {
-    background-color: #944a17;
+    background-color: var(--primary-color-hover);
 }
 
 
