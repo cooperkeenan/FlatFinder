@@ -23,10 +23,41 @@ app.secret_key = os.urandom(24)
 def home():
     return render_template('index.html')  
 
-# For You  
+# For You Page
 @app.route('/for-you')
 def for_you():
-    return render_template('for_you.html')  
+    # Get filter parameters (as strings)
+    price_min = request.args.get('price_min')
+    price_max = request.args.get('price_max')
+    bedrooms = request.args.get('bedrooms')
+
+    query = Property.query
+
+    # Only add the price filters if parameters are provided
+    if price_min:
+        try:
+            price_min = int(price_min)
+            query = query.filter(Property.price_pcm.cast(db.Integer) >= price_min)
+        except ValueError:
+            pass  # Handle or log error if conversion fails
+    if price_max:
+        try:
+            price_max = int(price_max)
+            query = query.filter(Property.price_pcm.cast(db.Integer) <= price_max)
+        except ValueError:
+            pass
+
+    if bedrooms:
+        try:
+            bedrooms = int(bedrooms)
+            query = query.filter(Property.bedrooms == bedrooms)
+        except ValueError:
+            pass
+
+    properties = query.all()
+    app.logger.info(f"Found {len(properties)} properties for For You page")
+    return render_template('for_you.html', properties=properties)
+
 
 # Search Filter Page
 @app.route('/search')
@@ -71,6 +102,8 @@ def property_detail(property_id):
     property = Property.query.get(property_id)
     image_urls = json.loads(property.image_urls)
     return render_template('view_property.html', property=property, image_urls=image_urls)
+
+
 
 
 # Profile Page
@@ -266,3 +299,13 @@ def format_date(value, format='%Y-%m-%d'):
 
 if __name__ == "__app__":
     app.run(debug=True)
+
+
+@app.template_filter('fromjson')
+def fromjson_filter(s):
+    """Convert a JSON string to a Python object."""
+    try:
+        return json.loads(s)
+    except Exception as e:
+        app.logger.error(f"Error in fromjson filter: {e}")
+        return []
