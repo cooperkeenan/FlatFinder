@@ -8,6 +8,11 @@
 
 {% block content %}
 <div class="for-you-page">
+    <!-- Embed JSON data in a script tag with a custom type -->
+    <script id="property-data" type="application/json">
+      {{ properties | tojson | safe }}
+    </script>
+    
     <!-- Container where the property card will be rendered -->
     <div id="property-container"></div>
 
@@ -20,10 +25,6 @@
 {% endblock %}
 
 {% block scripts %}
-  <!-- Embed properties JSON from the server into a JS variable -->
-  <script>
-      const properties = {{ properties | tojson }};
-  </script>
   <!-- Load the external JavaScript file -->
   <script src="{{ url_for('static', filename='js/for_you.js') }}"></script>
 {% endblock %}

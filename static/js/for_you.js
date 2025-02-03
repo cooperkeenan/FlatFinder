@@ -1,28 +1,24 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Get the content of the script tag by its ID and parse it
+    const propertyDataElement = document.getElementById('property-data');
+    const properties = JSON.parse(propertyDataElement.textContent);
+    
     let currentIndex = 0;
-  
-    /**
-     * Render the property card for the property at the given index.
-     * If there are no more properties, show a "No more properties" message.
-     */
+    
     function renderProperty(index) {
       if (index >= properties.length) {
-        document.getElementById('property-container').innerHTML =
-          "<p>No more properties!</p>";
+        document.getElementById('property-container').innerHTML = "<p>No more properties!</p>";
         return;
       }
-  
+    
       const property = properties[index];
       let imageList = [];
-  
-      // Parse the image_urls JSON string; ensure it is stored as a valid JSON array.
       try {
         imageList = JSON.parse(property.image_urls);
       } catch (e) {
         console.error("Error parsing image_urls:", e);
       }
-  
-      // Build HTML for the small images (skipping the first image, which is used as main)
+    
       let smallImagesHtml = "";
       if (imageList.length > 1) {
         for (let i = 1; i < imageList.length; i++) {
@@ -34,12 +30,11 @@ document.addEventListener('DOMContentLoaded', function () {
       } else {
         smallImagesHtml = `<div class="small-image">No Additional Images</div>`;
       }
-  
-      // Build the property card HTML
+    
       const propertyHtml = `
         <div class="property-card">
           <div class="left-column">
-            <h2>£${property.price_pcm} pcm (${property.price_pw})</h2>
+            <h2>${property.price_pcm}  (${property.price_pw})</h2>
             <h3>${property.flat_type || 'Property'}</h3>
             <p>${property.address}</p>
             <div class="image-gallery">
@@ -82,20 +77,17 @@ document.addEventListener('DOMContentLoaded', function () {
           </div>
         </div>
       `;
-  
-      // Update the property container with the new HTML
+    
       document.getElementById('property-container').innerHTML = propertyHtml;
     }
-  
-    // Initially render the first property
+    
     renderProperty(currentIndex);
-  
-    // Set up event listeners for the like and dislike buttons
+    
     document.querySelector('.like-btn').addEventListener('click', function () {
       currentIndex++;
       renderProperty(currentIndex);
     });
-  
+    
     document.querySelector('.dislike-btn').addEventListener('click', function () {
       currentIndex++;
       renderProperty(currentIndex);
