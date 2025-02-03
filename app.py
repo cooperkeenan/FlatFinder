@@ -26,37 +26,14 @@ def home():
 # For You Page
 @app.route('/for-you')
 def for_you():
-    # Get filter parameters (as strings)
-    price_min = request.args.get('price_min')
-    price_max = request.args.get('price_max')
-    bedrooms = request.args.get('bedrooms')
+    # Your filter code ...
+    properties_query = Property.query  # ... apply filters as needed
+    properties = properties_query.all()
+    # Convert properties to a list of dictionaries
+    properties_dict = [p.to_dict() for p in properties]
+    app.logger.info(f"Found {len(properties_dict)} properties for For You page")
+    return render_template('for_you.html', properties=properties_dict)
 
-    query = Property.query
-
-    # Only add the price filters if parameters are provided
-    if price_min:
-        try:
-            price_min = int(price_min)
-            query = query.filter(Property.price_pcm.cast(db.Integer) >= price_min)
-        except ValueError:
-            pass  # Handle or log error if conversion fails
-    if price_max:
-        try:
-            price_max = int(price_max)
-            query = query.filter(Property.price_pcm.cast(db.Integer) <= price_max)
-        except ValueError:
-            pass
-
-    if bedrooms:
-        try:
-            bedrooms = int(bedrooms)
-            query = query.filter(Property.bedrooms == bedrooms)
-        except ValueError:
-            pass
-
-    properties = query.all()
-    app.logger.info(f"Found {len(properties)} properties for For You page")
-    return render_template('for_you.html', properties=properties)
 
 
 # Search Filter Page

@@ -30,6 +30,29 @@ class Property(db.Model):
     flat_type = db.Column(db.String(500))
     number_floorplans = db.Column(db.Integer)
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "address": self.address,
+            "postcode": self.postcode,
+            "latitude": self.latitude,
+            "longitude": self.longitude,
+            "bedrooms": self.bedrooms,
+            "bathrooms": self.bathrooms,
+            "price_pcm": self.price_pcm,
+            "price_pw": self.price_pw,
+            "description": self.description,
+            "main_image_url": self.main_image_url,
+            "image_urls": self.image_urls,  # already a JSON string if stored that way
+            "location": self.location,
+            "listing_company": self.listing_company,
+            "date_added": self.date_added,
+            "lister_logo": self.lister_logo,
+            "flat_type": self.flat_type,
+            "number_floorplans": self.number_floorplans
+        }
+
+
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
